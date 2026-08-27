@@ -1,0 +1,575 @@
+{
+  "design_name": "FIVE_TRANSISTOR_OTA",
+  "top_module": {
+    "name": "FIVE_TRANSISTOR_OTA",
+    "pins": [
+      "VBIAS",
+      "VSS",
+      "VDD",
+      "VON",
+      "VIN",
+      "VIP"
+    ],
+    "instances": [
+      {
+        "name": "X_MP4_MP5",
+        "kind": "structure",
+        "structure_type": "SCM_PMOS",
+        "model": "SCM_PMOS_89741265",
+        "pins": {
+          "DA": "VOP",
+          "S": "VDD",
+          "DB": "VON"
+        },
+        "devices": [
+          "MP4",
+          "MP5"
+        ]
+      },
+      {
+        "name": "X_MN2_MN3",
+        "kind": "structure",
+        "structure_type": "DP_NMOS_B",
+        "model": "DP_NMOS_B_29120057",
+        "pins": {
+          "DA": "VON",
+          "GA": "VIN",
+          "S": "TAIL",
+          "B": "VSS",
+          "DB": "VOP",
+          "GB": "VIP"
+        },
+        "devices": [
+          "MN2",
+          "MN3"
+        ]
+      },
+      {
+        "name": "X_MN1",
+        "kind": "structure",
+        "structure_type": "NMOS_S",
+        "model": "NMOS_S_73699613",
+        "pins": {
+          "D": "TAIL",
+          "G": "VBIAS",
+          "S": "VSS"
+        },
+        "devices": [
+          "MN1"
+        ]
+      }
+    ],
+    "structures": [
+      {
+        "module": "FIVE_TRANSISTOR_OTA",
+        "name": "X_MP4_MP5",
+        "type": "SCM_PMOS",
+        "model": "SCM_PMOS_89741265",
+        "pins": {
+          "DA": "VOP",
+          "S": "VDD",
+          "DB": "VON"
+        },
+        "devices": [
+          "MP4",
+          "MP5"
+        ],
+        "device_details": [
+          {
+            "name": "MP4",
+            "model": "P",
+            "pins": {
+              "D": "VON",
+              "G": "VOP",
+              "S": "VDD",
+              "B": "VDD"
+            },
+            "parameters": {
+              "W": "2.7E-07",
+              "L": "2E-08",
+              "NFIN": "4",
+              "NF": "2",
+              "M": "4",
+              "PARALLEL": "1",
+              "STACK": "1"
+            }
+          },
+          {
+            "name": "MP5",
+            "model": "P",
+            "pins": {
+              "D": "VOP",
+              "G": "VOP",
+              "S": "VDD",
+              "B": "VDD"
+            },
+            "parameters": {
+              "W": "2.7E-07",
+              "L": "2E-08",
+              "NFIN": "4",
+              "NF": "2",
+              "M": "4",
+              "PARALLEL": "1",
+              "STACK": "1"
+            }
+          }
+        ]
+      },
+      {
+        "module": "FIVE_TRANSISTOR_OTA",
+        "name": "X_MN2_MN3",
+        "type": "DP_NMOS_B",
+        "model": "DP_NMOS_B_29120057",
+        "pins": {
+          "DA": "VON",
+          "GA": "VIN",
+          "S": "TAIL",
+          "B": "VSS",
+          "DB": "VOP",
+          "GB": "VIP"
+        },
+        "devices": [
+          "MN2",
+          "MN3"
+        ],
+        "device_details": [
+          {
+            "name": "MN2",
+            "model": "N",
+            "pins": {
+              "D": "VON",
+              "G": "VIN",
+              "S": "TAIL",
+              "B": "VSS"
+            },
+            "parameters": {
+              "W": "2.7E-07",
+              "L": "2E-08",
+              "NFIN": "4",
+              "NF": "2",
+              "M": "16",
+              "PARALLEL": "1",
+              "STACK": "1"
+            }
+          },
+          {
+            "name": "MN3",
+            "model": "N",
+            "pins": {
+              "D": "VOP",
+              "G": "VIP",
+              "S": "TAIL",
+              "B": "VSS"
+            },
+            "parameters": {
+              "W": "2.7E-07",
+              "L": "2E-08",
+              "NFIN": "4",
+              "NF": "2",
+              "M": "16",
+              "PARALLEL": "1",
+              "STACK": "1"
+            }
+          }
+        ]
+      },
+      {
+        "module": "FIVE_TRANSISTOR_OTA",
+        "name": "X_MN1",
+        "type": "NMOS_S",
+        "model": "NMOS_S_73699613",
+        "pins": {
+          "D": "TAIL",
+          "G": "VBIAS",
+          "S": "VSS"
+        },
+        "devices": [
+          "MN1"
+        ],
+        "device_details": [
+          {
+            "name": "MN1",
+            "model": "N",
+            "pins": {
+              "D": "TAIL",
+              "G": "VBIAS",
+              "S": "VSS",
+              "B": "VSS"
+            },
+            "parameters": {
+              "W": "2.7E-07",
+              "L": "2E-08",
+              "NFIN": "4",
+              "NF": "2",
+              "M": "8",
+              "PARALLEL": "1",
+              "STACK": "1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "FIVE_TRANSISTOR_OTA",
+      "pins": [
+        "VBIAS",
+        "VSS",
+        "VDD",
+        "VON",
+        "VIN",
+        "VIP"
+      ],
+      "instances": [
+        {
+          "name": "X_MP4_MP5",
+          "kind": "structure",
+          "structure_type": "SCM_PMOS",
+          "model": "SCM_PMOS_89741265",
+          "pins": {
+            "DA": "VOP",
+            "S": "VDD",
+            "DB": "VON"
+          },
+          "devices": [
+            "MP4",
+            "MP5"
+          ]
+        },
+        {
+          "name": "X_MN2_MN3",
+          "kind": "structure",
+          "structure_type": "DP_NMOS_B",
+          "model": "DP_NMOS_B_29120057",
+          "pins": {
+            "DA": "VON",
+            "GA": "VIN",
+            "S": "TAIL",
+            "B": "VSS",
+            "DB": "VOP",
+            "GB": "VIP"
+          },
+          "devices": [
+            "MN2",
+            "MN3"
+          ]
+        },
+        {
+          "name": "X_MN1",
+          "kind": "structure",
+          "structure_type": "NMOS_S",
+          "model": "NMOS_S_73699613",
+          "pins": {
+            "D": "TAIL",
+            "G": "VBIAS",
+            "S": "VSS"
+          },
+          "devices": [
+            "MN1"
+          ]
+        }
+      ],
+      "structures": [
+        {
+          "module": "FIVE_TRANSISTOR_OTA",
+          "name": "X_MP4_MP5",
+          "type": "SCM_PMOS",
+          "model": "SCM_PMOS_89741265",
+          "pins": {
+            "DA": "VOP",
+            "S": "VDD",
+            "DB": "VON"
+          },
+          "devices": [
+            "MP4",
+            "MP5"
+          ],
+          "device_details": [
+            {
+              "name": "MP4",
+              "model": "P",
+              "pins": {
+                "D": "VON",
+                "G": "VOP",
+                "S": "VDD",
+                "B": "VDD"
+              },
+              "parameters": {
+                "W": "2.7E-07",
+                "L": "2E-08",
+                "NFIN": "4",
+                "NF": "2",
+                "M": "4",
+                "PARALLEL": "1",
+                "STACK": "1"
+              }
+            },
+            {
+              "name": "MP5",
+              "model": "P",
+              "pins": {
+                "D": "VOP",
+                "G": "VOP",
+                "S": "VDD",
+                "B": "VDD"
+              },
+              "parameters": {
+                "W": "2.7E-07",
+                "L": "2E-08",
+                "NFIN": "4",
+                "NF": "2",
+                "M": "4",
+                "PARALLEL": "1",
+                "STACK": "1"
+              }
+            }
+          ]
+        },
+        {
+          "module": "FIVE_TRANSISTOR_OTA",
+          "name": "X_MN2_MN3",
+          "type": "DP_NMOS_B",
+          "model": "DP_NMOS_B_29120057",
+          "pins": {
+            "DA": "VON",
+            "GA": "VIN",
+            "S": "TAIL",
+            "B": "VSS",
+            "DB": "VOP",
+            "GB": "VIP"
+          },
+          "devices": [
+            "MN2",
+            "MN3"
+          ],
+          "device_details": [
+            {
+              "name": "MN2",
+              "model": "N",
+              "pins": {
+                "D": "VON",
+                "G": "VIN",
+                "S": "TAIL",
+                "B": "VSS"
+              },
+              "parameters": {
+                "W": "2.7E-07",
+                "L": "2E-08",
+                "NFIN": "4",
+                "NF": "2",
+                "M": "16",
+                "PARALLEL": "1",
+                "STACK": "1"
+              }
+            },
+            {
+              "name": "MN3",
+              "model": "N",
+              "pins": {
+                "D": "VOP",
+                "G": "VIP",
+                "S": "TAIL",
+                "B": "VSS"
+              },
+              "parameters": {
+                "W": "2.7E-07",
+                "L": "2E-08",
+                "NFIN": "4",
+                "NF": "2",
+                "M": "16",
+                "PARALLEL": "1",
+                "STACK": "1"
+              }
+            }
+          ]
+        },
+        {
+          "module": "FIVE_TRANSISTOR_OTA",
+          "name": "X_MN1",
+          "type": "NMOS_S",
+          "model": "NMOS_S_73699613",
+          "pins": {
+            "D": "TAIL",
+            "G": "VBIAS",
+            "S": "VSS"
+          },
+          "devices": [
+            "MN1"
+          ],
+          "device_details": [
+            {
+              "name": "MN1",
+              "model": "N",
+              "pins": {
+                "D": "TAIL",
+                "G": "VBIAS",
+                "S": "VSS",
+                "B": "VSS"
+              },
+              "parameters": {
+                "W": "2.7E-07",
+                "L": "2E-08",
+                "NFIN": "4",
+                "NF": "2",
+                "M": "8",
+                "PARALLEL": "1",
+                "STACK": "1"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "structures": [
+    {
+      "module": "FIVE_TRANSISTOR_OTA",
+      "name": "X_MP4_MP5",
+      "type": "SCM_PMOS",
+      "model": "SCM_PMOS_89741265",
+      "pins": {
+        "DA": "VOP",
+        "S": "VDD",
+        "DB": "VON"
+      },
+      "devices": [
+        "MP4",
+        "MP5"
+      ],
+      "device_details": [
+        {
+          "name": "MP4",
+          "model": "P",
+          "pins": {
+            "D": "VON",
+            "G": "VOP",
+            "S": "VDD",
+            "B": "VDD"
+          },
+          "parameters": {
+            "W": "2.7E-07",
+            "L": "2E-08",
+            "NFIN": "4",
+            "NF": "2",
+            "M": "4",
+            "PARALLEL": "1",
+            "STACK": "1"
+          }
+        },
+        {
+          "name": "MP5",
+          "model": "P",
+          "pins": {
+            "D": "VOP",
+            "G": "VOP",
+            "S": "VDD",
+            "B": "VDD"
+          },
+          "parameters": {
+            "W": "2.7E-07",
+            "L": "2E-08",
+            "NFIN": "4",
+            "NF": "2",
+            "M": "4",
+            "PARALLEL": "1",
+            "STACK": "1"
+          }
+        }
+      ]
+    },
+    {
+      "module": "FIVE_TRANSISTOR_OTA",
+      "name": "X_MN2_MN3",
+      "type": "DP_NMOS_B",
+      "model": "DP_NMOS_B_29120057",
+      "pins": {
+        "DA": "VON",
+        "GA": "VIN",
+        "S": "TAIL",
+        "B": "VSS",
+        "DB": "VOP",
+        "GB": "VIP"
+      },
+      "devices": [
+        "MN2",
+        "MN3"
+      ],
+      "device_details": [
+        {
+          "name": "MN2",
+          "model": "N",
+          "pins": {
+            "D": "VON",
+            "G": "VIN",
+            "S": "TAIL",
+            "B": "VSS"
+          },
+          "parameters": {
+            "W": "2.7E-07",
+            "L": "2E-08",
+            "NFIN": "4",
+            "NF": "2",
+            "M": "16",
+            "PARALLEL": "1",
+            "STACK": "1"
+          }
+        },
+        {
+          "name": "MN3",
+          "model": "N",
+          "pins": {
+            "D": "VOP",
+            "G": "VIP",
+            "S": "TAIL",
+            "B": "VSS"
+          },
+          "parameters": {
+            "W": "2.7E-07",
+            "L": "2E-08",
+            "NFIN": "4",
+            "NF": "2",
+            "M": "16",
+            "PARALLEL": "1",
+            "STACK": "1"
+          }
+        }
+      ]
+    },
+    {
+      "module": "FIVE_TRANSISTOR_OTA",
+      "name": "X_MN1",
+      "type": "NMOS_S",
+      "model": "NMOS_S_73699613",
+      "pins": {
+        "D": "TAIL",
+        "G": "VBIAS",
+        "S": "VSS"
+      },
+      "devices": [
+        "MN1"
+      ],
+      "device_details": [
+        {
+          "name": "MN1",
+          "model": "N",
+          "pins": {
+            "D": "TAIL",
+            "G": "VBIAS",
+            "S": "VSS",
+            "B": "VSS"
+          },
+          "parameters": {
+            "W": "2.7E-07",
+            "L": "2E-08",
+            "NFIN": "4",
+            "NF": "2",
+            "M": "8",
+            "PARALLEL": "1",
+            "STACK": "1"
+          }
+        }
+      ]
+    }
+  ]
+}

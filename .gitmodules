@@ -3,10 +3,7 @@
 	url = https://github.com/efabless/skywater-pdk-libs-sky130_fd_pr.git
 [submodule "Optimization_algorithm/TuRBO"]
 	path = Optimization_algorithm/TuRBO
-	url = https://github.com/saibopengke2077/SCLAP-BO-TuRBO.git
+	url = https://github.com/uber-research/TuRBO
 [submodule "Optimization_algorithm/tSS_BO"]
 	path = Optimization_algorithm/tSS_BO
-	url = https://github.com/saibopengke2077/SCLAP-BO-tSS_BO.git
-[submodule "align_structure_recognition"]
-	path = align_structure_recognition
-	url = https://github.com/saibopengke2077/SCLAP-BO-align_structure_recognition.git
+	url = https://github.com/PascalInn/tSS-BO
