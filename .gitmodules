@@ -7,3 +7,6 @@
 [submodule "Optimization_algorithm/tSS_BO"]
 	path = Optimization_algorithm/tSS_BO
 	url = https://github.com/PascalInn/tSS-BO
+[submodule "align_structure_recognition"]
+	path = align_structure_recognition
+	url = https://github.com/ALIGN-analoglayout/ALIGN-public

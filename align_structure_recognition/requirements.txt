@@ -1,7 +1,0 @@
-pydantic>=1.9.2,<2.0
-networkx
-pyyaml
-z3-solver
-flatdict
-more-itertools
-colorlog
