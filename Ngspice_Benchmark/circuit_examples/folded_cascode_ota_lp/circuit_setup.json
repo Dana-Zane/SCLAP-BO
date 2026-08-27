@@ -1,0 +1,96 @@
+{
+  "constraints": [
+    "FOM > 0.3",
+    "LPF_STOPBAND_ATTEN_DB > 20",
+    "LPF_CUTOFF_HZ > 0.5",
+    "LPF_PASSBAND_GAIN_DB > -5"
+  ],
+  "objectives": [
+    "max FOM"
+  ],
+  "ranges": [
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_in_base"
+      ]
+    },
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_fold_base"
+      ]
+    },
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_sink_base"
+      ]
+    },
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_mirr_base"
+      ]
+    },
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_casc_n_base"
+      ]
+    },
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_casc_p_base"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 10000.0,
+      "min": 500.0,
+      "params": [
+        "R1"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 10000.0,
+      "min": 500.0,
+      "params": [
+        "R2"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 1.592e-10,
+      "min": 7.96e-12,
+      "params": [
+        "C1"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 1.592e-10,
+      "min": 7.96e-12,
+      "params": [
+        "C2"
+      ]
+    }
+  ],
+  "testbenches": [
+    "tb.cir"
+  ]
+}

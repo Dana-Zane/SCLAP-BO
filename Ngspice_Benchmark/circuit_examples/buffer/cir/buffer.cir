@@ -1,0 +1,8 @@
+.subckt BUFFER IN OUT VSS VDD
+* First stage inverter
+XM0 OUT1 IN VSS VSS sky130_fd_pr__nfet_01v8 w={W_nmos1} l=0.15
+XM2 OUT1 IN VDD VDD sky130_fd_pr__pfet_01v8 w={W_pmos1} l=0.15
+* Second stage inverter  
+XM1 OUT OUT1 VSS VSS sky130_fd_pr__nfet_01v8 w={W_nmos2} l=0.15
+XM3 OUT OUT1 VDD VDD sky130_fd_pr__pfet_01v8 w={W_pmos2} l=0.15
+.ends BUFFER

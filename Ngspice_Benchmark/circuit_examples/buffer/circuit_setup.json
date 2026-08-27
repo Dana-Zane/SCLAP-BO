@@ -1,0 +1,48 @@
+{
+  "constraints": [
+    "FOM > 2.5",
+    "DC_GAIN_DB > 25",
+    "AVERAGE_DELAY < 80",
+    "DYNAMIC_POWER < 50"
+  ],
+  "objectives": [
+    "max FOM"
+  ],
+  "ranges": [
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_pmos1_base"
+      ]
+    },
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_nmos1_base"
+      ]
+    },
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_pmos2_base"
+      ]
+    },
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_nmos2_base"
+      ]
+    }
+  ],
+  "testbenches": [
+    "tb.cir"
+  ]
+}

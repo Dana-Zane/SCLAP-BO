@@ -1,0 +1,87 @@
+* LDO Voltage Regulator
+.lib ../../device_models/sky130_fd_pr/combined_models/sky130.lib.spice tt
+.global VDD GND
+.temp 27
+
+* Design variables injected by my_testbench_template/src/ngspice.py
+.include 'design_var.inc'
+
+*********** Unit Under Test ********************
+.include "ldo_regulator.cir"
+*********** Test-bench *************************
+XLDO VDD VDD_INTERNAL GND VOUT VREF VGATE VFB LDO_REGULATOR
+ILOAD VOUT GND DC 0.01
+CLOAD VOUT GND 100p
+
+VREF VREF GND DC 0.6
+VSUP_DC VDD GND DC 1.8
+VSUP_AC VDD_INTERNAL VDD DC 0 AC 1
+
+.ic v(VOUT)=1.2 v(VGATE)=1.1 v(VFB)=0.6
+
+.control
+set noaskquit
+set wr_singlescale
+set wr_vecnames
+
+op
+let vout = v(VOUT)
+let power_uw = abs(i(VSUP_DC)) * 1.8 * 1e6
+
+echo "VOUT_NOM:" > ldo_results.txt
+print v(VOUT) >> ldo_results.txt
+
+echo "I_SUPPLY:" >> ldo_results.txt
+print i(VSUP_DC) >> ldo_results.txt
+
+let i_load_val = 0.01
+echo "I_LOAD:" >> ldo_results.txt
+print i_load_val >> ldo_results.txt
+
+let vout_nom = v(VOUT)
+let dropout_mv = (1.8 - vout_nom) * 1000
+print vout power_uw dropout_mv
+
+dc VSUP_DC 1.62 1.9800000000000002 0.01
+let vout_line = v(VOUT)
+let line_reg = (vecmax(vout_line) - vecmin(vout_line)) * 1000 / 0.36000000000000004
+let line_reg_mv_per_v = line_reg
+print line_reg_mv_per_v
+
+dc ILOAD 0.001 0.02 0.00095
+let vout_load = v(VOUT)
+let load_reg = (vout_load[0] - vout_load[length(vout_load)-1]) * 1000 / ((0.02-0.001)*1000)
+let load_reg_mv_per_ma = abs(load_reg) * 1000
+print load_reg_mv_per_ma
+
+dc temp -40 125 10
+let vout_temp = v(VOUT)
+let vout_temp_min = vecmin(vout_temp)
+let vout_temp_max = vecmax(vout_temp)
+
+echo "TEMP_MIN:" >> ldo_results.txt
+print vout_temp_min >> ldo_results.txt
+
+echo "TEMP_MAX:" >> ldo_results.txt
+print vout_temp_max >> ldo_results.txt
+
+op
+ac dec 20 1 1Meg
+
+set curplot=ac1
+let vout_ac_mag = mag(v(VOUT)[10])
+let psrr_db = 20 * log10(1.0 / vout_ac_mag)
+echo "AC_VOUT_MAG:" >> ldo_results.txt
+print vout_ac_mag >> ldo_results.txt
+print psrr_db
+
+let dropout_for_fom = op1.dropout_mv
+let line_reg_for_fom = dc1.line_reg_mv_per_v
+let load_reg_for_fom = dc2.load_reg_mv_per_ma
+let power_for_fom = op1.power_uw
+let fom = (abs(psrr_db) * 10) / (dropout_for_fom * line_reg_for_fom * load_reg_for_fom * power_for_fom)
+print fom
+
+quit
+.endc
+.end

@@ -1,0 +1,82 @@
+* Circuit Analysis
+.lib ../../device_models/sky130_fd_pr/combined_models/sky130.lib.spice tt
+.option scale=1e-6
+
+* Design variables injected by my_testbench_template/src/ngspice.py
+.include 'design_var.inc'
+.param
++W_nmos1={W_nmos1_base*10}
++W_nmos2={W_nmos2_base*10}
++W_pmos1={W_pmos1_base*10}
++W_pmos2={W_pmos2_base*10}
+
+
+
+*********** Unit Under Test ********************
+.include "buffer.cir"
+*********** Test-bench *************************
+
+
+* Test circuit
+Vdd VDD 0 DC 1.8
+Vss VSS 0 DC 0
+Vin IN 0 DC 0 PULSE(0 1.8 200p 100p 100p 2n 4n)
+Xcircuit IN OUT VSS VDD BUFFER
+Cout OUT 0 10e-15
+
+* DC Sweep for Gain
+.dc Vin 0 1.8 0.01
+
+.control
+run
+
+let vout_deriv = deriv(v(OUT))
+let gain_linear = abs(vout_deriv)
+let gain_db = db(gain_linear)
+meas dc dc_gain_db MAX gain_db
+
+
+print dc_gain_db 
+.endc
+
+* Transient for Power and Delay
+.control
+destroy all
+reset
+
+dc Vin 0 1.8 0.01
+let vout_deriv_pp = deriv(v(OUT))
+let gain_linear_pp = abs(vout_deriv_pp)
+let gain_db_pp = db(gain_linear_pp)
+meas dc dc_gain_db_pp MAX gain_db_pp
+let dc_gain_for_fom = vecmax(gain_db_pp)
+
+tran 1p 8n
+
+* Power calculation
+let power = v(VDD) * (-i(Vdd))
+let avg_power = mean(power)
+meas tran static_i AVG i(Vdd) from=50p to=150p
+let static_power = abs(static_i) * 1.8
+let dynamic_power = abs(avg_power - static_power)
+
+* Delay measurements - find 50% crossings
+meas tran t_in_r WHEN v(IN)=0.9 CROSS=1
+meas tran t_out_r WHEN v(OUT)=0.9 CROSS=1
+meas tran t_in_f WHEN v(IN)=0.9 CROSS=2
+meas tran t_out_f WHEN v(OUT)=0.9 CROSS=2
+
+let tplh = t_out_r - t_in_r
+let tphl = t_out_f - t_in_f
+let average_delay = (tplh + tphl)/2
+
+* my_testbench_template parse-friendly post-processed measures
+let dynamic_power = dynamic_power * 1e6
+let average_delay = average_delay * 1e12
+let fom = dc1.dc_gain_for_fom / (average_delay * dynamic_power)
+
+print dynamic_power average_delay fom
+quit
+.endc
+
+.end

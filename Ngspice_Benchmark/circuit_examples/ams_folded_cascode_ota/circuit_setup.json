@@ -1,0 +1,64 @@
+{
+  "constraints": [
+    "FOM > 3.0",
+    "DC_GAIN_DB > 1.5",
+    "UGBW > 10",
+    "POWER_DC < 1.0"
+  ],
+  "objectives": [
+    "max FOM"
+  ],
+  "ranges": [
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_in_base"
+      ]
+    },
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_fold_base"
+      ]
+    },
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_sink_base"
+      ]
+    },
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_mirror_base"
+      ]
+    },
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_casc_n_base"
+      ]
+    },
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_casc_p_base"
+      ]
+    }
+  ],
+  "testbenches": [
+    "tb.cir"
+  ]
+}

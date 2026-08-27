@@ -1,0 +1,12 @@
+.subckt CURRENT_MIRROR_OTA VSS VDD VOUT VINN VINP ID
+XM5 ID ID VSS VSS sky130_fd_pr__nfet_01v8 w={W_tail} l=0.15
+XM4 SOURCE ID VSS VSS sky130_fd_pr__nfet_01v8 w={W_tail} l=0.15
+XM3 NET7 VINN SOURCE VSS sky130_fd_pr__nfet_01v8 w={W_diff} l=0.15
+XM0 NET8 VINP SOURCE VSS sky130_fd_pr__nfet_01v8 w={W_diff} l=0.15
+XM2 NET7 NET7 VDD VDD sky130_fd_pr__pfet_01v8 w={W_mirror} l=0.15
+XM1 NET8 NET8 VDD VDD sky130_fd_pr__pfet_01v8 w={W_mirror} l=0.15
+XM6 VOUT NET7 VDD VDD sky130_fd_pr__pfet_01v8 w={W_out} l=0.15
+XM7 NET9 NET8 VDD VDD sky130_fd_pr__pfet_01v8 w={W_out} l=0.15
+XM8 NET9 NET9 SOURCE VSS sky130_fd_pr__nfet_01v8 w={W_casc} l=0.15
+XM9 VOUT NET9 SOURCE VSS sky130_fd_pr__nfet_01v8 w={W_casc} l=0.15
+.ends CURRENT_MIRROR_OTA

@@ -1,0 +1,342 @@
+[
+  {
+    "circuit": "3_stage_ring_osc",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/3_stage_ring_osc",
+    "output_name": "3_stage_ring_osc",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/3_stage_ring_osc/cir/tb.cir",
+    "variables": [
+      "L_inv",
+      "W_pmos0",
+      "W_nmos0",
+      "W_pmos1",
+      "W_nmos1",
+      "W_pmos2",
+      "W_nmos2"
+    ]
+  },
+  {
+    "circuit": "azc",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/azc",
+    "output_name": "azc",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/azc/cir/tb.cir",
+    "variables": [
+      "L",
+      "W_BIAS",
+      "W_AZC1",
+      "W_AZC23",
+      "W_LOAD",
+      "W_GM1",
+      "W_GM2",
+      "W_GMFOUT"
+    ]
+  },
+  {
+    "circuit": "bandgap_reference",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/bandgap_reference",
+    "output_name": "bandgap_reference",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/bandgap_reference/cir/tb.cir",
+    "variables": [
+      "W_mp",
+      "L_mp",
+      "W_mn",
+      "L_mn",
+      "L_ra",
+      "L_rb"
+    ]
+  },
+  {
+    "circuit": "buffer",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/buffer",
+    "output_name": "buffer",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/buffer/cir/tb.cir",
+    "variables": [
+      "W_pmos1_base",
+      "W_nmos1_base",
+      "W_pmos2_base",
+      "W_nmos2_base"
+    ]
+  },
+  {
+    "circuit": "current_mirror_ota",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/current_mirror_ota",
+    "output_name": "current_mirror_ota",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/current_mirror_ota/cir/tb.cir",
+    "variables": [
+      "W_tail_base",
+      "W_diff_base",
+      "W_mirror_base",
+      "W_casc_base"
+    ]
+  },
+  {
+    "circuit": "dfcfc",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/dfcfc",
+    "output_name": "dfcfc",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/dfcfc/cir/tb.cir",
+    "variables": [
+      "L",
+      "W_BIAS_P",
+      "W_BIAS_N",
+      "W_CASC_N",
+      "W_GM1",
+      "W_GM2",
+      "W_GMF2",
+      "W_GM3",
+      "W_GM4",
+      "W_LOAD2"
+    ]
+  },
+  {
+    "circuit": "diode_load_amp",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/diode_load_amp",
+    "output_name": "diode_load_amp",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/diode_load_amp/cir/tb.cir",
+    "variables": [
+      "W_input",
+      "W_load",
+      "L_input",
+      "L_load"
+    ]
+  },
+  {
+    "circuit": "fdgb",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/fdgb",
+    "output_name": "fdgb",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/fdgb/cir/tb.cir",
+    "variables": [
+      "L",
+      "W_GM1",
+      "W_CASC_N",
+      "W_CASC_P",
+      "W_CURR_P",
+      "W_TAIL",
+      "W_AUX_GM",
+      "W_AUX_LOAD",
+      "W_AUX_TAIL",
+      "W_BIAS_P",
+      "W_BIAS_N"
+    ]
+  },
+  {
+    "circuit": "five_trans_ota",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/five_trans_ota",
+    "output_name": "five_trans_ota",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/five_trans_ota/cir/tb.cir",
+    "variables": [
+      "W_tail_base",
+      "W_diff_base",
+      "W_load_base"
+    ]
+  },
+  {
+    "circuit": "folded_cascode_ota",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/ams_folded_cascode_ota",
+    "output_name": "ams_folded_cascode_ota",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/ams_folded_cascode_ota/cir/tb.cir",
+    "variables": [
+      "W_in_base",
+      "W_fold_base",
+      "W_sink_base",
+      "W_mirror_base",
+      "W_casc_n_base",
+      "W_casc_p_base"
+    ]
+  },
+  {
+    "circuit": "folded_cascode_ota_bandp",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/folded_cascode_ota_bandp",
+    "output_name": "folded_cascode_ota_bandp",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/folded_cascode_ota_bandp/cir/tb.cir",
+    "variables": [
+      "W_in_base",
+      "W_fold_base",
+      "W_sink_base",
+      "W_mirr_base",
+      "W_casc_n_base",
+      "W_casc_p_base",
+      "R1",
+      "R2",
+      "C1",
+      "C2"
+    ]
+  },
+  {
+    "circuit": "folded_cascode_ota_hp",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/folded_cascode_ota_hp",
+    "output_name": "folded_cascode_ota_hp",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/folded_cascode_ota_hp/cir/tb.cir",
+    "variables": [
+      "W_in_base",
+      "W_fold_base",
+      "W_sink_base",
+      "W_mirr_base",
+      "W_casc_n_base",
+      "W_casc_p_base",
+      "R1",
+      "R2",
+      "C1",
+      "C2"
+    ]
+  },
+  {
+    "circuit": "folded_cascode_ota_lp",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/folded_cascode_ota_lp",
+    "output_name": "folded_cascode_ota_lp",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/folded_cascode_ota_lp/cir/tb.cir",
+    "variables": [
+      "W_in_base",
+      "W_fold_base",
+      "W_sink_base",
+      "W_mirr_base",
+      "W_casc_n_base",
+      "W_casc_p_base",
+      "R1",
+      "R2",
+      "C1",
+      "C2"
+    ]
+  },
+  {
+    "circuit": "iac",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/iac",
+    "output_name": "iac",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/iac/cir/tb.cir",
+    "variables": [
+      "L",
+      "W_BIAS_P",
+      "W_BIAS_N",
+      "W_LOAD2",
+      "W_LOAD3",
+      "W_GM1",
+      "W_GM2",
+      "W_GMT"
+    ]
+  },
+  {
+    "circuit": "inverter",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/inverter",
+    "output_name": "inverter",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/inverter/cir/tb.cir",
+    "variables": [
+      "W_pmos_base",
+      "W_nmos_base"
+    ]
+  },
+  {
+    "circuit": "ldo_regulator",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/ldo_regulator",
+    "output_name": "ldo_regulator",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/ldo_regulator/cir/tb.cir",
+    "variables": [
+      "W_pass",
+      "L_pass",
+      "W_diff",
+      "W_load",
+      "W_bias",
+      "L_amp"
+    ]
+  },
+  {
+    "circuit": "nand_gate",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/nand_gate",
+    "output_name": "nand_gate",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/nand_gate/cir/tb.cir",
+    "variables": [
+      "W_pmos",
+      "W_nmos",
+      "L_pmos",
+      "L_nmos"
+    ]
+  },
+  {
+    "circuit": "nmcnr",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/nmcnr",
+    "output_name": "nmcnr",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/nmcnr/cir/tb.cir",
+    "variables": [
+      "L",
+      "W_BIAS_P",
+      "W_BIAS_N",
+      "W_GM1",
+      "W_GM2",
+      "W_GM3",
+      "W_LOAD2"
+    ]
+  },
+  {
+    "circuit": "resistive_load_amp",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/resistive_load_amp",
+    "output_name": "resistive_load_amp",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/resistive_load_amp/cir/tb.cir",
+    "variables": [
+      "W_input",
+      "L_input",
+      "R_load"
+    ]
+  },
+  {
+    "circuit": "smc",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/smc",
+    "output_name": "smc",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/smc/cir/tb.cir",
+    "variables": [
+      "L",
+      "W_BIAS_P",
+      "W_BIAS_N",
+      "W_GM1",
+      "W_GM2",
+      "W_GMF2",
+      "W_GM3",
+      "W_LOAD2"
+    ]
+  },
+  {
+    "circuit": "switched_capacitor",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/switched_capacitor",
+    "output_name": "switched_capacitor",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/switched_capacitor/cir/tb.cir",
+    "variables": [
+      "W_op1_base",
+      "W_op2_base",
+      "W_sw_base",
+      "L_op_base",
+      "L_sw_base"
+    ]
+  },
+  {
+    "circuit": "telescopic_ota",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/telescopic_ota",
+    "output_name": "telescopic_ota",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/telescopic_ota/cir/tb.cir",
+    "variables": [
+      "W_tail_base",
+      "W_diff_base",
+      "W_casc_base",
+      "W_load_base"
+    ]
+  },
+  {
+    "circuit": "voltage_controlled_osc",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/voltage_controlled_osc",
+    "output_name": "voltage_controlled_osc",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/voltage_controlled_osc/cir/tb.cir",
+    "variables": [
+      "W_inv_p_base",
+      "W_inv_n_base",
+      "L_inv_p_base",
+      "L_inv_n_base"
+    ]
+  },
+  {
+    "circuit": "xor_gate",
+    "folder": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/xor_gate",
+    "output_name": "xor_gate",
+    "testbench": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/xor_gate/cir/tb.cir",
+    "variables": [
+      "W_pmos",
+      "W_nmos",
+      "L_pmos",
+      "L_nmos"
+    ]
+  }
+]

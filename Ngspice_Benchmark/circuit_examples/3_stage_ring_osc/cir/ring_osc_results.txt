@@ -1,0 +1,4 @@
+PERIOD:
+period = 2.8057160e-10
+I_AVG:
+i_avg = 2.0756268e-04

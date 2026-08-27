@@ -1,0 +1,41 @@
+{
+  "constraints": [
+    "FOM > 3",
+    "GAIN_DB > 15",
+    "BANDWIDTH_MHZ > 200",
+    "POWER_UW < 20",
+    "OUTPUT_SWING_V > 0.4"
+  ],
+  "objectives": [
+    "max FOM"
+  ],
+  "ranges": [
+    {
+      "grid": 0.0,
+      "max": 50.0,
+      "min": 2.0,
+      "params": [
+        "W_input"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 3.0,
+      "min": 0.5,
+      "params": [
+        "L_input"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 100000.0,
+      "min": 10000.0,
+      "params": [
+        "R_load"
+      ]
+    }
+  ],
+  "testbenches": [
+    "tb.cir"
+  ]
+}

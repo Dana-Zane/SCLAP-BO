@@ -1,0 +1,159 @@
+* Copyright 2021 Nuno Lourenço 
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+* Adapted from: 
+* Copyright 2020 The SkyWater PDK Authors
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     https://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+******* SkyWater sky130 model library *********
+
+
+
+* Typical corner (tt)
+.lib tt
+.option scale=1.0u
+.param MC_MM_SWITCH=0
+.param MC_PR_SWITCH=0
+.param corner_factor=1
+.param process_mc_factor=1
+.param mismatch_factor=1
+
+.include "../sky130_fd_pr/combined_models/continuous/parameters_fet_tt.spice"
+.include "../sky130_fd_pr/combined_models/continuous/parameters_res_nom.spice"
+.include "../sky130_fd_pr/combined_models/continuous/parameters_cap_nom.spice"
+
+* Include the model files
+.include "../sky130_fd_pr/combined_models/continuous/models_global.spice"
+.include "../sky130_fd_pr/combined_models/continuous/models_fet.spice"
+.include "../sky130_fd_pr/combined_models/continuous/models_bjt.spice"
+.include "../sky130_fd_pr/combined_models/continuous/models_diodes.spice"
+.include "../sky130_fd_pr/combined_models/continuous/models_resistors.spice"
+.include "../sky130_fd_pr/combined_models/continuous/models_capacitors.spice"
+
+* generic models
+.include "./sky130A.spice.mdl"
+.endl tt
+
+
+.lib ss
+.option scale=1.0u
+.param MC_MM_SWITCH=0
+.param MC_PR_SWITCH=0
+.param corner_factor=1
+.param process_mc_factor=1
+.param mismatch_factor=1
+
+.include ../sky130_fd_pr/combined_models/continuous/parameters_fet_ss.spice
+.include ../sky130_fd_pr/combined_models/continuous/parameters_res_nom.spice
+.include ../sky130_fd_pr/combined_models/continuous/parameters_cap_nom.spice
+
+* Include the model files
+.include ../sky130_fd_pr/combined_models/continuous/models_global.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_fet.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_bjt.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_diodes.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_resistors.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_capacitors.spice
+
+
+
+* generic models
+.include "./sky130A.spice.mdl"
+.endl ss
+
+
+.lib ff
+.option scale=1.0u
+.param MC_MM_SWITCH=0
+.param MC_PR_SWITCH=0
+.param corner_factor=1
+.param process_mc_factor=1
+.param mismatch_factor=1
+
+.include ../sky130_fd_pr/combined_models/continuous/parameters_fet_ff.spice
+.include ../sky130_fd_pr/combined_models/continuous/parameters_res_nom.spice
+.include ../sky130_fd_pr/combined_models/continuous/parameters_cap_nom.spice
+
+* Include the model files
+.include ../sky130_fd_pr/combined_models/continuous/models_global.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_fet.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_bjt.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_diodes.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_resistors.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_capacitors.spice
+
+
+
+* generic models
+.include "./sky130A.spice.mdl"
+.endl ff
+
+
+.lib snfp
+.option scale=1.0u
+
+.param MC_MM_SWITCH=0
+.param MC_PR_SWITCH=0
+.param corner_factor=1
+.param process_mc_factor=1
+.param mismatch_factor=1
+
+.include ../sky130_fd_pr/combined_models/continuous/parameters_fet_sf.spice
+.include ../sky130_fd_pr/combined_models/continuous/parameters_res_nom.spice
+.include ../sky130_fd_pr/combined_models/continuous/parameters_cap_nom.spice
+
+* Include the model files
+.include ../sky130_fd_pr/combined_models/continuous/models_global.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_fet.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_bjt.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_diodes.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_resistors.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_capacitors.spice
+
+
+* generic models
+.include "./sky130A.spice.mdl"
+.endl snfp
+
+.lib fnsp
+.option scale=1.0u
+
+.param MC_MM_SWITCH=0
+.param MC_PR_SWITCH=0
+.param corner_factor=1
+.param process_mc_factor=1
+.param mismatch_factor=1
+
+.include ../sky130_fd_pr/combined_models/continuous/parameters_fet_fs.spice
+.include ../sky130_fd_pr/combined_models/continuous/parameters_res_nom.spice
+.include ../sky130_fd_pr/combined_models/continuous/parameters_cap_nom.spice
+
+* Include the model files
+.include ../sky130_fd_pr/combined_models/continuous/models_global.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_fet.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_bjt.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_diodes.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_resistors.spice
+.include ../sky130_fd_pr/combined_models/continuous/models_capacitors.spice
+
+
+
+* generic models
+.include "./sky130A.spice.mdl"
+.endl snfp
+
+

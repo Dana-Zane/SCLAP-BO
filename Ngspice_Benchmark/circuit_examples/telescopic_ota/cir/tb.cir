@@ -1,0 +1,80 @@
+* Telescopic OTA Simulation
+  .lib ../../device_models/sky130_fd_pr/combined_models/sky130.lib.spice tt
+
+* Design variables injected by my_testbench_template/src/ngspice.py
+.include 'design_var.inc'
+.param
++W_casc={W_casc_base*2}
++W_diff={W_diff_base*4}
++W_load={W_load_base*2}
++W_tail={W_tail_base*2}
+
+
+  
+
+*********** Unit Under Test ********************
+.include "telescopic_ota.cir"
+*********** Test-bench *************************
+
+  
+  * Power supply
+  VDD VDD 0 DC 1.8
+  
+  * Bias Generation
+  IBIAS_N VDD VBIASN DC 10e-6
+  XMN_BIAS VBIASN VBIASN 0 0 sky130_fd_pr__nfet_01v8 w={W_tail} l=0.15
+  
+  IBIAS_P VBIASP2 0 DC 10e-6
+  XMP_BIAS VBIASP2 VBIASP2 VDD VDD sky130_fd_pr__pfet_01v8 w={W_load} l=0.15
+  
+  VBIASP1 VBIASP1 0 DC=1.15
+  
+  * NEW: NMOS cascode bias (a bit higher than VBIASN)
+  IBIAS_NC VDD VBIASNC DC 10e-6
+  XMN_BIASC VBIASNC VBIASNC 0 0 sky130_fd_pr__nfet_01v8 w={W_casc} l=0.15
+  
+  * Differential inputs
+  VINP VINP 0 DC 0.7 AC 0.5
+  VINN VINN 0 DC 0.7 AC -0.5
+  
+  * OTA instance
+  XOTA VBIASN VBIASNC VBIASP1 VBIASP2 VINN VINP VOUTN VOUTP VDD 0 TELESCOPIC_OTA
+  
+  * Load capacitors
+  CLOADP VOUTP 0 1e-12
+  CLOADN VOUTN 0 1e-12
+  
+  .op
+  
+  .control
+  op
+  
+  * Power
+  let vdd_current = abs(i(VDD))
+  let power_dc = vdd_current * 1.8
+  echo "=== POWER ==="
+  print vdd_current power_dc
+  
+  * AC analysis
+  ac dec 100 1 10g
+  
+  let vout_diff = v(VOUTP) - v(VOUTN)
+  let gain_db = db(vout_diff)
+  
+  let dc_gain_db = gain_db[0]
+  
+  echo "=== DC GAIN ==="
+  print dc_gain_db
+  
+  * UGBW
+  meas ac ugbw WHEN gain_db=0 CROSS=1
+
+  * my_testbench_template parse-friendly post-processed measures
+  let power_dc = op1.power_dc * 1e6
+  let ugbw = ugbw * 1e-6
+  let fom = dc_gain_db * ugbw / power_dc
+  print power_dc ugbw fom
+  
+  quit
+  .endc
+  .end

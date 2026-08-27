@@ -1,0 +1,309 @@
+[
+  {
+    "circuit": "3_stage_ring_osc",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/3_stage_ring_osc/t0/3_stage_ring_osc.cir_meas.txt",
+    "measures": [
+      "V_FIRST",
+      "V_SECOND"
+    ],
+    "num_measures": 2,
+    "status": "ok"
+  },
+  {
+    "circuit": "azc",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/azc/t0/azc.cir_meas.txt",
+    "measures": [
+      "DC_GAIN_DB",
+      "POWER_DC"
+    ],
+    "num_measures": 2,
+    "status": "ok"
+  },
+  {
+    "circuit": "bandgap_reference",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/bandgap_reference/t0/bandgap_reference.cir_meas.txt",
+    "measures": [
+      "I_SUPPLY",
+      "POWER_UW",
+      "VREF"
+    ],
+    "num_measures": 3,
+    "status": "ok"
+  },
+  {
+    "circuit": "buffer",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/buffer/t0/buffer.cir_meas.txt",
+    "measures": [
+      "AVERAGE_DELAY",
+      "DC_GAIN_DB",
+      "DYNAMIC_POWER",
+      "STATIC_I",
+      "T_IN_F",
+      "T_IN_R",
+      "T_OUT_F",
+      "T_OUT_R"
+    ],
+    "num_measures": 8,
+    "status": "ok"
+  },
+  {
+    "circuit": "current_mirror_ota",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/current_mirror_ota/t0/current_mirror_ota.cir_meas.txt",
+    "measures": [
+      "DC_GAIN_DB",
+      "POWER_DC",
+      "UGBW"
+    ],
+    "num_measures": 3,
+    "status": "ok"
+  },
+  {
+    "circuit": "dfcfc",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/dfcfc/t0/dfcfc.cir_meas.txt",
+    "measures": [
+      "DC_GAIN_DB",
+      "POWER_DC",
+      "UGBW"
+    ],
+    "num_measures": 3,
+    "status": "ok"
+  },
+  {
+    "circuit": "diode_load_amp",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/diode_load_amp/t0/diode_load_amp.cir_meas.txt",
+    "measures": [
+      "GAIN_DB",
+      "I_DD",
+      "POWER_UW",
+      "VIN_DC",
+      "VOUT_DC"
+    ],
+    "num_measures": 5,
+    "status": "ok"
+  },
+  {
+    "circuit": "fdgb",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/fdgb/t0/fdgb.cir_meas.txt",
+    "measures": [
+      "DC_GAIN_DB",
+      "POWER_DC",
+      "UGBW"
+    ],
+    "num_measures": 3,
+    "status": "ok"
+  },
+  {
+    "circuit": "five_trans_ota",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/five_trans_ota/t0/five_trans_ota.cir_meas.txt",
+    "measures": [
+      "DC_GAIN_DB",
+      "POWER_DC",
+      "UGBW"
+    ],
+    "num_measures": 3,
+    "status": "ok"
+  },
+  {
+    "circuit": "ams_folded_cascode_ota",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/ams_folded_cascode_ota/t0/ams_folded_cascode_ota.cir_meas.txt",
+    "measures": [
+      "DC_GAIN_DB",
+      "GAIN_DB",
+      "POWER_DC",
+      "UGBW"
+    ],
+    "num_measures": 4,
+    "status": "ok"
+  },
+  {
+    "circuit": "folded_cascode_ota_bandp",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/folded_cascode_ota_bandp/t0/folded_cascode_ota_bandp.cir_meas.txt",
+    "measures": [
+      "GAIN_PEAK",
+      "PWR",
+      "UGBW_HZ"
+    ],
+    "num_measures": 3,
+    "status": "ok"
+  },
+  {
+    "circuit": "folded_cascode_ota_hp",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/folded_cascode_ota_hp/t0/folded_cascode_ota_hp.cir_meas.txt",
+    "measures": [
+      "GAIN_PEAK",
+      "PWR",
+      "ROLLOFF",
+      "STOPBAND_ATT",
+      "UGBW_HZ"
+    ],
+    "num_measures": 5,
+    "status": "ok"
+  },
+  {
+    "circuit": "folded_cascode_ota_lp",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/folded_cascode_ota_lp/t0/folded_cascode_ota_lp.cir_meas.txt",
+    "measures": [
+      "DC_GAIN_DB",
+      "GAIN_DC",
+      "PM",
+      "PWR",
+      "ROLLOFF",
+      "STOPBAND_ATT",
+      "UGBW_HZ"
+    ],
+    "num_measures": 7,
+    "status": "ok"
+  },
+  {
+    "circuit": "iac",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/iac/t0/iac.cir_meas.txt",
+    "measures": [
+      "DC_GAIN_DB",
+      "POWER_DC"
+    ],
+    "num_measures": 2,
+    "status": "ok"
+  },
+  {
+    "circuit": "inverter",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/inverter/t0/inverter.cir_meas.txt",
+    "measures": [
+      "AVERAGE_DELAY",
+      "DC_GAIN_DB",
+      "DYNAMIC_POWER",
+      "STATIC_CURRENT",
+      "T_IN_50_FALL",
+      "T_IN_50_RISE",
+      "T_OUT_50_FALL",
+      "T_OUT_50_RISE"
+    ],
+    "num_measures": 8,
+    "status": "ok"
+  },
+  {
+    "circuit": "ldo_regulator",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/ldo_regulator/t0/ldo_regulator.cir_meas.txt",
+    "measures": [
+      "DROPOUT_MV",
+      "LINE_REG",
+      "LOAD_REG"
+    ],
+    "num_measures": 3,
+    "status": "ok"
+  },
+  {
+    "circuit": "nand_gate",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/nand_gate/t0/nand_gate.cir_meas.txt",
+    "measures": [
+      "V_B_50_FALL",
+      "V_B_50_RISE",
+      "V_Y_50_FALL",
+      "V_Y_50_RISE"
+    ],
+    "num_measures": 4,
+    "status": "ok"
+  },
+  {
+    "circuit": "nmcnr",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/nmcnr/t0/nmcnr.cir_meas.txt",
+    "measures": [
+      "DC_GAIN_DB",
+      "POWER_DC"
+    ],
+    "num_measures": 2,
+    "status": "ok"
+  },
+  {
+    "circuit": "resistive_load_amp",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/resistive_load_amp/t0/resistive_load_amp.cir_meas.txt",
+    "measures": [
+      "GAIN_DB",
+      "I_DD",
+      "POWER_UW",
+      "VIN_DC",
+      "VOUT_DC"
+    ],
+    "num_measures": 5,
+    "status": "ok"
+  },
+  {
+    "circuit": "smc",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/smc/t0/smc.cir_meas.txt",
+    "measures": [
+      "DC_GAIN_DB",
+      "POWER_DC",
+      "UGBW"
+    ],
+    "num_measures": 3,
+    "status": "ok"
+  },
+  {
+    "circuit": "switched_capacitor",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/switched_capacitor/t0/switched_capacitor.cir_meas.txt",
+    "measures": [
+      "I_SUPPLY_OP",
+      "OUTPUT_SWING",
+      "VOUT_DC"
+    ],
+    "num_measures": 3,
+    "status": "ok"
+  },
+  {
+    "circuit": "telescopic_ota",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/telescopic_ota/t0/telescopic_ota.cir_meas.txt",
+    "measures": [
+      "DC_GAIN_DB",
+      "POWER_DC",
+      "UGBW",
+      "VDD_CURRENT"
+    ],
+    "num_measures": 4,
+    "status": "ok"
+  },
+  {
+    "circuit": "voltage_controlled_osc",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/voltage_controlled_osc/t0/voltage_controlled_osc.cir_meas.txt",
+    "measures": [
+      "VCO_POINTS",
+      "VCO_SPAN"
+    ],
+    "num_measures": 2,
+    "status": "ok"
+  },
+  {
+    "circuit": "xor_gate",
+    "fatal_in_log": false,
+    "meas_log": "/home/tyf/code/AutoSizer/my_testbench_template/Ngspice_Benchmark/circuit_examples/xor_gate/t0/xor_gate.cir_meas.txt",
+    "measures": [
+      "V_B_50_FALL",
+      "V_B_50_RISE",
+      "V_Y_50_FALL",
+      "V_Y_50_RISE"
+    ],
+    "num_measures": 4,
+    "status": "ok"
+  }
+]

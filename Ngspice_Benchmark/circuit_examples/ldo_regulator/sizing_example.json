@@ -1,0 +1,8 @@
+{
+  "L_amp": 3.0,
+  "L_pass": 1.0,
+  "W_bias": 10,
+  "W_diff": 40,
+  "W_load": 80,
+  "W_pass": 500
+}

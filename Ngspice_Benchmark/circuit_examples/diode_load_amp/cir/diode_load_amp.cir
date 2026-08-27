@@ -1,0 +1,11 @@
+* Diode Load Amplifier
+.subckt DIODE_LOAD_AMP VIN VOUT VDD GND
+* Input transistor (NMOS common-source)
+XM_INPUT VOUT VIN GND GND sky130_fd_pr__nfet_01v8 l={L_input} w={W_input}
+
+* Diode-connected load (PMOS)
+XM_LOAD VOUT VOUT VDD VDD sky130_fd_pr__pfet_01v8 l={L_load} w={W_load}
+
+* Load capacitor
+CL VOUT GND 1e-14
+.ends DIODE_LOAD_AMP

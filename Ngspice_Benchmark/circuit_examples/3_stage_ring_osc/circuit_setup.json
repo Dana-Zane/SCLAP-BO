@@ -1,0 +1,72 @@
+{
+  "constraints": [
+    "FOM > 90",
+    "FREQUENCY_MHZ > 400",
+    "POWER_UW < 250",
+    "DELAY_PER_STAGE_PS < 500"
+  ],
+  "objectives": [
+    "max FOM"
+  ],
+  "ranges": [
+    {
+      "grid": 0.0,
+      "max": 0.3,
+      "min": 0.15,
+      "params": [
+        "L_inv"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 8.0,
+      "min": 0.5,
+      "params": [
+        "W_pmos0"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 8.0,
+      "min": 0.5,
+      "params": [
+        "W_nmos0"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 8.0,
+      "min": 0.5,
+      "params": [
+        "W_pmos1"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 8.0,
+      "min": 0.5,
+      "params": [
+        "W_nmos1"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 8.0,
+      "min": 0.5,
+      "params": [
+        "W_pmos2"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 8.0,
+      "min": 0.5,
+      "params": [
+        "W_nmos2"
+      ]
+    }
+  ],
+  "testbenches": [
+    "tb.cir"
+  ]
+}

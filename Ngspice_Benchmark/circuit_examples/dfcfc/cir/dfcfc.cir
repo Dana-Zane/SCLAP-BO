@@ -1,0 +1,47 @@
+.subckt DFCFC GNDA VDDA VINN VINP VOUT
+* PMOS BIAS CURRENT MIRROR
+xm0 VBIAS VBIAS VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=4
+xm1 VB4 VBIAS VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=4
+xm2 DM_1 VBIAS VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=4
+xm3 VB3 VBIAS VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=4
+xm4 TAIL VBIAS VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=8
+xm5 VOUTN VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=4
+xm6 V1OUT VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=4
+xm7 V2OUT VBIAS VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=4
+xm8 NET1 VBIAS VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=4
+
+* FIRST STAGE
+xm9 DM_2 VINN TAIL TAIL sky130_fd_pr__pfet_01v8 l={L} w={W_GM1} m=4
+xm10 DM_P VINP TAIL TAIL sky130_fd_pr__pfet_01v8 l={L} w={W_GM1} m=4
+xm20 DM_2 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=32
+xm21 DM_P VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=32
+xm16 VOUTN VB3 DM_2 GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_CASC_N} m=32
+xm17 V1OUT VB3 DM_P GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_CASC_N} m=32
+
+* NMOS BIAS GENERATION
+xm15 VB3 VB3 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=4
+xm18 NET54 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=16
+xm13 VB4 VB3 NET54 GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=16
+xm19 NET56 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=16
+xm14 DM_1 VB3 NET56 GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=16
+
+* SECOND STAGE
+xm11 V2IN V1OUT VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_GM2} m=4
+xm22 V2IN V2IN GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_LOAD2} m=4
+xm23 V2OUT V2IN GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_LOAD2} m=4
+
+* OUTPUT STAGE
+xm25 VOUT V2OUT GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_GM3} m=4
+xm12 VOUT V1OUT VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_GMF2} m=4
+
+* DAMPING FACTOR CONTROL
+xm24 NET1 V2OUT GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_GM4} m=4
+
+* COMPENSATION
+C0 V1OUT VOUT 500e-15
+C1 V2OUT NET1 200e-15
+
+* BIAS CURRENT SOURCE
+I0 VBIAS GNDA 10e-6
+
+.ends DFCFC

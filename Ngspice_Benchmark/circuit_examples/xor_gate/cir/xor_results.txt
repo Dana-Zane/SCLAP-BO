@@ -1,0 +1,14 @@
+I_STATIC:
+i_static = 1.360163e-11
+TPHL_PS:
+tphl_val = 5.694637e+03
+TPLH_PS:
+tplh_val = 9.779998e+03
+AVG_DELAY_PS:
+avg_delay_val = 7.737317e+03
+I_DYNAMIC:
+i_avg = 3.624943e-06
+VOH:
+voh_val = 1.894632e+00
+VOL:
+vol_val = -5.66379e-02

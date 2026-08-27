@@ -1,0 +1,302 @@
+{
+  "ranges": [
+    {
+      "params": [
+        "Axd1"
+      ],
+      "min": 1e-10,
+      "max": 4e-08,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Pxd1"
+      ],
+      "min": 1e-06,
+      "max": 0.001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Axi0"
+      ],
+      "min": 1e-13,
+      "max": 1e-11,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Pxi0"
+      ],
+      "min": 1e-06,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Axi3"
+      ],
+      "min": 1e-13,
+      "max": 1e-11,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Pxi3"
+      ],
+      "min": 1e-06,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lr0"
+      ],
+      "min": 5e-07,
+      "max": 0.0001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wr0"
+      ],
+      "min": 1e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lr1"
+      ],
+      "min": 1e-09,
+      "max": 2e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wr1"
+      ],
+      "min": 1e-06,
+      "max": 0.001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ac0"
+      ],
+      "min": 2e-07,
+      "max": 5e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Pc0"
+      ],
+      "min": 5e-07,
+      "max": 0.0001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln11"
+      ],
+      "min": 2e-07,
+      "max": 5e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn11"
+      ],
+      "min": 5e-07,
+      "max": 0.0001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln2"
+      ],
+      "min": 2e-07,
+      "max": 5e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn2"
+      ],
+      "min": 5e-07,
+      "max": 0.0001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lnpd1"
+      ],
+      "min": 2e-07,
+      "max": 5e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wnpd1"
+      ],
+      "min": 5e-07,
+      "max": 0.0001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln1"
+      ],
+      "min": 2e-07,
+      "max": 5e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn1"
+      ],
+      "min": 5e-07,
+      "max": 0.0001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lnpd2"
+      ],
+      "min": 2e-07,
+      "max": 5e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wnpd2"
+      ],
+      "min": 5e-07,
+      "max": 0.0001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lnc1"
+      ],
+      "min": 2e-07,
+      "max": 5e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wnc1"
+      ],
+      "min": 5e-07,
+      "max": 0.0001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lpb2"
+      ],
+      "min": 2e-07,
+      "max": 5e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wpb2"
+      ],
+      "min": 5e-07,
+      "max": 0.0001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lppd1"
+      ],
+      "min": 2e-07,
+      "max": 5e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wppd1"
+      ],
+      "min": 5e-07,
+      "max": 0.0001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lps11"
+      ],
+      "min": 2e-07,
+      "max": 5e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wps11"
+      ],
+      "min": 5e-07,
+      "max": 0.0001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp11"
+      ],
+      "min": 2e-07,
+      "max": 5e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp11"
+      ],
+      "min": 5e-07,
+      "max": 0.0001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp1"
+      ],
+      "min": 2e-07,
+      "max": 5e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp1"
+      ],
+      "min": 5e-07,
+      "max": 0.0001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lpb1"
+      ],
+      "min": 2e-07,
+      "max": 5e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wpb1"
+      ],
+      "min": 5e-07,
+      "max": 0.0001,
+      "grid": 0.0
+    }
+  ],
+  "testbenches": [
+    "new_OPAMP1.circuit"
+  ],
+  "objectives": [
+    "max gain",
+    "max gbw",
+    "max pm",
+    "min power"
+  ],
+  "constraints": []
+}

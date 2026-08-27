@@ -1,0 +1,32 @@
+{
+  "constraints": [
+    "FOM > 1.0",
+    "DC_GAIN_DB > 20",
+    "AVERAGE_DELAY < 50",
+    "DYNAMIC_POWER < 50"
+  ],
+  "objectives": [
+    "max FOM"
+  ],
+  "ranges": [
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_pmos_base"
+      ]
+    },
+    {
+      "grid": 0.21,
+      "max": 2.52,
+      "min": 0.84,
+      "params": [
+        "W_nmos_base"
+      ]
+    }
+  ],
+  "testbenches": [
+    "tb.cir"
+  ]
+}

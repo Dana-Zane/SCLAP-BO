@@ -1,0 +1,23 @@
+* LDO Voltage Regulator
+.subckt LDO_REGULATOR VDD VDD_INTERNAL GND VOUT VREF VGATE VFB
+XMPASS VOUT VGATE VDD_INTERNAL VDD sky130_fd_pr__pfet_01v8 l={L_pass} w={W_pass} m=10
+
+XM1 VD1 VREF VTAIL GND sky130_fd_pr__nfet_01v8 l={L_amp} w={W_diff} m=4
+XM2 VD2 VFB VTAIL GND sky130_fd_pr__nfet_01v8 l={L_amp} w={W_diff} m=4
+
+XMTAIL VTAIL VBIAS GND GND sky130_fd_pr__nfet_01v8 l={L_amp*2} w={W_bias} m=4
+
+XM3 VD1 VD1 VDD_INTERNAL VDD sky130_fd_pr__pfet_01v8 l={L_amp} w={W_load} m=4
+XM4 VD2 VD1 VDD_INTERNAL VDD sky130_fd_pr__pfet_01v8 l={L_amp} w={W_load} m=4
+
+XM5 VGATE VD2 VDD_INTERNAL VDD sky130_fd_pr__pfet_01v8 l={L_amp} w={W_load*4} m=4
+XM6 VGATE VBIAS GND GND sky130_fd_pr__nfet_01v8 l={L_amp*2} w={W_bias*2} m=2
+
+CC VGATE VOUT 5p
+
+XR1 VOUT VFB VDD sky130_fd_pr__res_high_po_1p41 w=1.41 l=156.0
+XR2 VFB GND VDD sky130_fd_pr__res_high_po_1p41 w=1.41 l=156.0
+
+XMBIAS VBIAS VBIAS GND GND sky130_fd_pr__nfet_01v8 l={L_amp*4} w={W_bias} m=1
+RBIAS VDD_INTERNAL VBIAS 18000.0
+.ends LDO_REGULATOR

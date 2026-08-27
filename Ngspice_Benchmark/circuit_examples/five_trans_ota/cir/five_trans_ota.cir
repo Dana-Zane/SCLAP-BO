@@ -1,0 +1,8 @@
+.subckt FIVE_TRANSISTOR_OTA VSS VDD VOUT VINN VINP ID
+xm5 ID ID VSS VSS sky130_fd_pr__nfet_01v8 w={W_tail} l=0.15
+xm4 SOURCE ID VSS VSS sky130_fd_pr__nfet_01v8 w={W_tail} l=0.15
+xm3 VOUT VINN SOURCE VSS sky130_fd_pr__nfet_01v8 w={W_diff} l=0.15
+xm0 NET8 VINP SOURCE VSS sky130_fd_pr__nfet_01v8 w={W_diff} l=0.15
+xm2 VOUT NET8 VDD VDD sky130_fd_pr__pfet_01v8 w={W_load} l=0.15
+xm1 NET8 NET8 VDD VDD sky130_fd_pr__pfet_01v8 w={W_load} l=0.15
+.ends FIVE_TRANSISTOR_OTA

@@ -1,0 +1,101 @@
+* Voltage-Controlled Oscillator - Multi-point characterization
+.lib ../../device_models/sky130_fd_pr/combined_models/sky130.lib.spice tt
+.global VDD GND
+.temp 27
+
+* Design variables injected by my_testbench_template/src/ngspice.py
+.include 'design_var.inc'
+.param
++L_inv_n={L_inv_n_base*1}
++L_inv_p={L_inv_p_base*1}
++W_inv_n={W_inv_n_base*1}
++W_inv_p={W_inv_p_base*1}
+
+*********** Unit Under Test ********************
+.include "voltage_controlled_osc.cir"
+*********** Test-bench *************************
+XVCO N0 N1 N2 N3 N4 VDD GND VOLTAGE_CONTROLLED_OSC
+*** Load capacitors
+C0 N0 GND 3e-14
+C1 N1 GND 3e-14
+C2 N2 GND 3e-14
+C3 N3 GND 3e-14
+C4 N4 GND 3e-14
+
+*** Power supply
+VSUP VDD GND PWL(0 0 10n 1.8)
+
+*** Symmetry breaking resistor
+RBREAK N0 GND 10G
+
+
+.control
+* VCO characterization: sweep v_ctrl and measure frequency
+let v_ctrl_points = 10
+let v_ctrl_min = 0.0
+let v_ctrl_max = 1.8
+let v_ctrl_step = (v_ctrl_max - v_ctrl_min) / (v_ctrl_points - 1)
+
+* Output file for results
+set wr_singlescale
+set wr_vecnames
+
+* Loop over v_ctrl values
+let i = 0
+let freq_values = vector(10)
+let power_values = vector(10)
+while i < v_ctrl_points
+  * Calculate current v_ctrl
+  let v_ctrl_current = v_ctrl_min + i * v_ctrl_step
+  
+  * Update capacitors based on v_ctrl
+  let cap_base = 5e-15
+  let cap_variable = (v_ctrl_current / 1.8) * 50e-15
+  let cap_total_val = cap_base + cap_variable
+  
+  alter C0 = cap_total_val
+  alter C1 = cap_total_val
+  alter C2 = cap_total_val
+  alter C3 = cap_total_val
+  alter C4 = cap_total_val
+  
+  * Run transient simulation
+  tran 1n 20u
+
+  meas tran t_first WHEN v(N3)=0.9 RISE=1 TD=10u
+  meas tran t_second WHEN v(N3)=0.9 RISE=2 TD=10u
+  meas tran i_avg AVG i(VSUP) from=15u to=20u
+  let period = t_second - t_first
+  let freq_values[i] = 1 / period
+  let power_values[i] = abs(i_avg) * 1.8 * 1e6
+  
+  * Save results to files with index
+  wrdata vco_tran.txt time v(N3)
+  wrdata vco_current.txt time i(VSUP)
+  
+  * Increment counter
+  let i = i + 1
+end
+
+
+  * my_testbench_template parse-friendly measures
+  let f_max = vecmax(freq_values)
+  let f_min = vecmin(freq_values)
+  let f_center = (f_max + f_min) / 2
+  let tuning_range_percent = abs((f_max - f_min) / f_center * 100)
+  let freq_at_max = freq_values[v_ctrl_points - 1] * 1e-6
+  let power_uw = power_values[v_ctrl_points / 2]
+  let vco_gain_sum = 0
+  let i = 0
+  while i < v_ctrl_points - 1
+    let vco_gain_sum = vco_gain_sum + abs((freq_values[i+1] - freq_values[i]) / v_ctrl_step / 1e6)
+    let i = i + 1
+  end
+  let vco_gain_mhz_per_v = vco_gain_sum / (v_ctrl_points - 1)
+  let fom = (tuning_range_percent / 100) * (freq_at_max / 1e3) * (1000 / power_uw) * (vco_gain_mhz_per_v / 1000) * 10
+  print tuning_range_percent freq_at_max power_uw vco_gain_mhz_per_v fom
+
+quit
+.endc
+
+.end

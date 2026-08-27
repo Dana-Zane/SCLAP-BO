@@ -1,0 +1,71 @@
+{
+  "constraints": [
+    "DC_GAIN_DB > 18",
+    "UGBW > 10",
+    "POWER_DC < 600"
+  ],
+  "objectives": [
+    "max FOM"
+  ],
+  "ranges": [
+    {
+      "grid": 0.5,
+      "max": 4.5,
+      "min": 1.0,
+      "params": [
+        "L"
+      ]
+    },
+    {
+      "grid": 2.0,
+      "max": 11.0,
+      "min": 5.0,
+      "params": [
+        "W_BIAS_P"
+      ]
+    },
+    {
+      "grid": 1.0,
+      "max": 6.0,
+      "min": 3.0,
+      "params": [
+        "W_BIAS_N"
+      ]
+    },
+    {
+      "grid": 3.0,
+      "max": 15.0,
+      "min": 6.0,
+      "params": [
+        "W_GM1"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 9.0,
+      "min": 4.0,
+      "params": [
+        "W_GM2"
+      ]
+    },
+    {
+      "grid": 1.0,
+      "max": 6.0,
+      "min": 3.0,
+      "params": [
+        "W_GM3"
+      ]
+    },
+    {
+      "grid": 1.0,
+      "max": 5.0,
+      "min": 2.0,
+      "params": [
+        "W_LOAD2"
+      ]
+    }
+  ],
+  "testbenches": [
+    "tb.cir"
+  ]
+}

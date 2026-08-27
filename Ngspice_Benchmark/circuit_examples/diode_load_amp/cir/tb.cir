@@ -1,0 +1,75 @@
+* Diode Load Amplifier
+.lib ../../device_models/sky130_fd_pr/combined_models/sky130.lib.spice tt
+.global VDD GND
+.temp 27
+
+* Design variables injected by my_testbench_template/src/ngspice.py
+.include 'design_var.inc'
+
+*********** Unit Under Test ********************
+.include "diode_load_amp.cir"
+*********** Test-bench *************************
+XDUT VIN VOUT VDD GND DIODE_LOAD_AMP
+* DC bias + AC signal (combined in one source)
+VIN VIN GND DC 0.6 AC 0.001
+
+* Supply
+VDD VDD GND DC 1.8
+
+.control
+set noaskquit
+set wr_singlescale
+set wr_vecnames
+option numdgt=7
+
+* Operating point
+op
+
+echo "I_DD:" > diode_load_amp_results.txt
+print -i(VDD) >> diode_load_amp_results.txt
+
+echo "VOUT_DC:" >> diode_load_amp_results.txt
+print v(VOUT) >> diode_load_amp_results.txt
+
+echo "VIN_DC:" >> diode_load_amp_results.txt
+print v(VIN) >> diode_load_amp_results.txt
+
+
+
+* my_testbench_template parse-friendly measures
+let i_dd = abs(i(VDD))
+let power_uw = i_dd * 1.8 * 1e6
+let vout_dc = v(VOUT)
+let vin_dc = v(VIN)
+print i_dd power_uw vout_dc vin_dc
+
+* AC analysis
+ac dec 100 1 10G
+
+* Save AC data
+wrdata diode_load_amp_results.txt_ac.txt frequency db(v(VOUT))
+
+let gain_vec = db(v(VOUT) / 0.001)
+let gain_db = gain_vec[0]
+let target_gain = gain_db - 3
+let idx = 0
+while idx < length(gain_vec) - 1
+  if (gain_vec[idx] >= target_gain) & (gain_vec[idx+1] < target_gain)
+    let bandwidth_hz = frequency[idx]
+    break
+  end
+  let idx = idx + 1
+end
+let bandwidth_mhz = real(bandwidth_hz) * 1e-6
+let output_swing_v = op1.vout_dc
+if (1.8 - op1.vout_dc) < output_swing_v
+  let output_swing_v = 1.8 - op1.vout_dc
+end
+let power_uw = op1.power_uw
+let fom = (10 ^ (gain_db / 20) * bandwidth_mhz * output_swing_v) / power_uw
+print gain_db bandwidth_mhz output_swing_v fom
+
+quit
+.endc
+
+.end

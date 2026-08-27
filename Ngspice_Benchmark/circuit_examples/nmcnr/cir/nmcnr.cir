@@ -1,0 +1,44 @@
+.subckt NMCNR GNDA VDDA VINN VINP VOUT
+* PMOS BIAS CURRENT MIRROR
+xm0 VBIAS VBIAS VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=7
+xm1 VB4 VBIAS VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=7
+xm2 DM_1 VBIAS VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=7
+xm3 VB3 VBIAS VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=7
+xm4 TAIL VBIAS VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=28
+xm5 VOUTN VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=7
+xm6 V1OUT VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=7
+xm7 V2OUT VBIAS VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=7
+xm11 VOUT VBIAS VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=70
+
+* FIRST STAGE - PMOS Differential Pair with NMOS Folded Cascode
+xm8 DM_N VINN TAIL TAIL sky130_fd_pr__pfet_01v8 l={L} w={W_GM1} m=24
+xm9 DM_P VINP TAIL TAIL sky130_fd_pr__pfet_01v8 l={L} w={W_GM1} m=24
+xm19 DM_N VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=400
+xm20 DM_P VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=400
+xm15 VOUTN VB3 DM_N GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=200
+xm16 V1OUT VB3 DM_P GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=200
+
+* NMOS BIAS GENERATION
+xm14 VB3 VB3 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=400
+xm17 NET54 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=1600
+xm12 VB4 VB3 NET54 GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=1600
+xm18 NET56 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=1600
+xm13 DM_1 VB3 NET56 GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=1600
+
+* SECOND STAGE
+xm10 V2IN V1OUT VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_GM2} m=18
+xm21 V2IN V2IN GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_LOAD2} m=7
+xm22 V2OUT V2IN GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_LOAD2} m=7
+
+* OUTPUT STAGE
+xm23 VOUT V2OUT GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_GM3} m=14
+
+* COMPENSATION (Nested Miller with Nulling Resistor)
+C0 V1OUT NR 4.8e-12
+C1 NR V2OUT 5.5e-12
+R0 NR VOUT 9.4e3
+
+* BIAS CURRENT SOURCE
+I0 VBIAS GNDA 19e-6
+
+.ends NMCNR

@@ -1,0 +1,8 @@
+*  Design Var
+ .param
++W_in_base=1.68
++W_fold_base=1.68
++W_sink_base=1.68
++W_mirror_base=1.68
++W_casc_n_base=1.68
++W_casc_p_base=1.68

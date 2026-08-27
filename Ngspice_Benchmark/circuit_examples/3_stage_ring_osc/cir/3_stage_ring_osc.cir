@@ -1,0 +1,17 @@
+* 3-Stage Ring Oscillator with Individual Transistor Sizing
+.subckt THREE_STAGE_RING_OSC N0 N1 N2 VDD GND
+* Stage 0: N0 → N1
+XMP0 N1 N0 VDD VDD sky130_fd_pr__pfet_01v8 l={L_inv} w={W_pmos0}
+XMN0 N1 N0 GND GND sky130_fd_pr__nfet_01v8 l={L_inv} w={W_nmos0}
+
+* Stage 1: N1 → N2
+XMP1 N2 N1 VDD VDD sky130_fd_pr__pfet_01v8 l={L_inv} w={W_pmos1}
+XMN1 N2 N1 GND GND sky130_fd_pr__nfet_01v8 l={L_inv} w={W_nmos1}
+
+* Stage 2: N2 → N0 (closes the ring)
+XMP2 N0 N2 VDD VDD sky130_fd_pr__pfet_01v8 l={L_inv} w={W_pmos2}
+XMN2 N0 N2 GND GND sky130_fd_pr__nfet_01v8 l={L_inv} w={W_nmos2}
+
+* Load capacitor
+CL N0 GND 1e-14
+.ends THREE_STAGE_RING_OSC

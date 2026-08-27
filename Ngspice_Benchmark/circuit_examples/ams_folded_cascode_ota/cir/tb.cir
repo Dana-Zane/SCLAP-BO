@@ -1,0 +1,85 @@
+* Folded-Cascode OTA testbench
+.lib ../../device_models/sky130_fd_pr/combined_models/sky130.lib.spice tt
+.options GMIN=1e-10 RELTOL=1e-4 ABSTOL=1e-12
+
+* Design variables injected by my_testbench_template/src/ngspice.py
+.include 'design_var.inc'
+.param
++W_casc_n={W_casc_n_base*20}
++W_casc_p={W_casc_p_base*20}
++W_fold={W_fold_base*4}
++W_in={W_in_base*4}
++W_mirror={W_mirror_base*20}
++W_sink={W_sink_base*20}
+
+
+
+*********** Unit Under Test ********************
+.include "ams_folded_cascode_ota.cir"
+*********** Test-bench *************************
+
+
+* Rails - Use voltage sources to measure current
+VVDD  VDD_NODE   0   DC 1.8
+VVSS  VSS_NODE   0   DC 0
+
+* Bias voltages
+VBN   VBN_NODE   0   DC 0.7
+VBP   VBP_NODE   0   DC 1.0
+
+* Differential inputs
+VINP  VINP_NODE  0   DC 0.9 AC 0.5
+VINN  VINN_NODE  0   DC 0.9 AC -0.5
+
+* Tail current - Use 0V voltage source to measure current
+VTAIL VDD_NODE VTAIL_NODE DC 0
+ITAIL_SRC VTAIL_NODE 0 DC 10e-6
+
+* DUT and load
+XOTA  VSS_NODE VDD_NODE VOUT_NODE VINN_NODE VINP_NODE VBN_NODE VBP_NODE VTAIL_NODE FOLDED_CASCODE_OTA
+CLOAD VOUT_NODE VSS_NODE 1e-12
+
+.op
+.ac dec 200 1 10G
+
+* Measurements
+.measure ac dc_gain_db max vdb(VOUT_NODE)
+.measure ac ugbw when vdb(VOUT_NODE)=0 fall=1
+
+.control
+set noaskquit
+op
+
+ac dec 200 1 10G
+setplot ac1
+
+* AC gain
+let vout_ac = ac1.v(VOUT_NODE)
+let gain_linear = mag(vout_ac[0])
+let gain_db = 20*log(gain_linear)/log(10)
+print gain_db
+
+* UGBW
+let vout_mag = mag(vout_ac)
+let freq_vec = frequency
+let gain_db_vec = 20*log(vout_mag)/log(10)
+
+let idx = 0
+while idx < length(gain_db_vec) - 1
+  if (gain_db_vec[idx] > 0) & (gain_db_vec[idx+1] < 0)
+    let ugbw_hz = freq_vec[idx]
+    break
+  end
+  let idx = idx + 1
+end
+
+* my_testbench_template parse-friendly post-processed measures
+let dc_gain_db = gain_db
+let ugbw = real(ugbw_hz) * 1e-6
+let power_dc = abs(i(VVDD)[0]) * 1.8 * 100 * 1e6
+let fom = dc_gain_db * ugbw / power_dc
+print power_dc ugbw fom
+
+quit
+.endc
+.end

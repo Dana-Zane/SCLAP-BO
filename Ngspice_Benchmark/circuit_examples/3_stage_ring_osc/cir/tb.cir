@@ -1,0 +1,55 @@
+* 3-Stage Ring Oscillator with Individual Transistor Sizing
+.lib ../../device_models/sky130_fd_pr/combined_models/sky130.lib.spice tt
+.global VDD GND
+.temp 27
+
+* Design variables injected by my_testbench_template/src/ngspice.py
+.include 'design_var.inc'
+
+*********** Unit Under Test ********************
+.include "3_stage_ring_osc.cir"
+*********** Test-bench *************************
+XOSC N0 N1 N2 VDD GND THREE_STAGE_RING_OSC
+* Supply
+VDD VDD GND DC 1.8
+
+* Initial condition to help start oscillation
+.ic v(N0)=1.8
+
+.control
+set noaskquit
+set wr_singlescale
+set wr_vecnames
+option numdgt=7
+
+* Transient to observe oscillation
+tran 1p 50n
+
+* Measure oscillation frequency
+meas tran v_first WHEN v(N0)=0.9 RISE=1
+meas tran v_second WHEN v(N0)=0.9 RISE=2
+let period = v_second - v_first
+
+echo "PERIOD:" > ring_osc_results.txt
+print period >> ring_osc_results.txt
+
+* Measure average power
+let i_avg = mean(-i(VDD))
+
+echo "I_AVG:" >> ring_osc_results.txt
+print i_avg >> ring_osc_results.txt
+
+* Save waveform for verification
+wrdata ring_osc_results.txt_waveform.txt time v(N0) v(N1) v(N2)
+
+* my_testbench_template parse-friendly measures
+let frequency_mhz = 1 / period / 1e6
+let power_uw = abs(i_avg) * 1.8 * 1e6
+let delay_per_stage_ps = period / 6 * 1e12
+let fom = frequency_mhz / power_uw
+print frequency_mhz power_uw delay_per_stage_ps fom
+
+quit
+.endc
+
+.end

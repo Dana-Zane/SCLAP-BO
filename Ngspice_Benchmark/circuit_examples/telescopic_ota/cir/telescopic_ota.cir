@@ -1,0 +1,21 @@
+.subckt TELESCOPIC_OTA VBIASN VBIASNC VBIASP1 VBIASP2 VINN VINP VOUTN VOUTP VDD 0
+* Tail current sources
+xm1 ID   VBIASN  0   0  sky130_fd_pr__nfet_01v8 w={W_tail} l=0.15
+xm2 NET10 VBIASN 0   0  sky130_fd_pr__nfet_01v8 w={W_tail} l=0.15
+
+* Differential pair
+xm3 NET8   VINP NET10 0 sky130_fd_pr__nfet_01v8 w={W_diff} l=0.15
+xm4 NET014 VINN NET10 0 sky130_fd_pr__nfet_01v8 w={W_diff} l=0.15
+
+* NMOS cascode  (use VBIASNC here)
+xm5 VOUTN VBIASNC NET8   0 sky130_fd_pr__nfet_01v8 w={W_casc} l=0.15 
+xm6 VOUTP VBIASNC NET014 0 sky130_fd_pr__nfet_01v8 w={W_casc} l=0.15
+
+* PMOS cascode
+xm7 VOUTN VBIASP1 NET06 VDD sky130_fd_pr__pfet_01v8 w={W_casc} l=0.15
+xm8 VOUTP VBIASP1 NET012 VDD sky130_fd_pr__pfet_01v8 w={W_casc} l=0.15
+
+* PMOS current source
+xm9  NET06 VBIASP2 VDD VDD sky130_fd_pr__pfet_01v8 w={W_load} l=0.15
+xm10 NET012 VBIASP2 VDD VDD sky130_fd_pr__pfet_01v8 w={W_load} l=0.15
+.ends TELESCOPIC_OTA

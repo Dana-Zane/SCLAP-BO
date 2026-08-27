@@ -1,0 +1,68 @@
+{
+  "constraints": [
+    "FOM > 3",
+    "VOUT > 1.19",
+    "VOUT < 1.21",
+    "DROPOUT_MV < 650",
+    "LINE_REG_MV_PER_V < 0.5",
+    "LOAD_REG_MV_PER_MA < 1.0",
+    "PSRR_DB > 60",
+    "POWER_UW < 20000"
+  ],
+  "objectives": [
+    "max FOM"
+  ],
+  "ranges": [
+    {
+      "grid": 0.0,
+      "max": 1000.0,
+      "min": 100.0,
+      "params": [
+        "W_pass"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 2.0,
+      "min": 0.5,
+      "params": [
+        "L_pass"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 80.0,
+      "min": 10.0,
+      "params": [
+        "W_diff"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 160.0,
+      "min": 20.0,
+      "params": [
+        "W_load"
+      ]
+    },
+    {
+      "grid": 5.0,
+      "max": 15.0,
+      "min": 5.0,
+      "params": [
+        "W_bias"
+      ]
+    },
+    {
+      "grid": 1.0,
+      "max": 4.0,
+      "min": 1.0,
+      "params": [
+        "L_amp"
+      ]
+    }
+  ],
+  "testbenches": [
+    "tb.cir"
+  ]
+}

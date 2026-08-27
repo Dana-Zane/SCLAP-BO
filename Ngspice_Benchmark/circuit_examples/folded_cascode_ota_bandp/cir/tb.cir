@@ -1,0 +1,120 @@
+* Folded-Cascode OTA with Sallen-Key BAND-PASS Filter
+.lib ../../device_models/sky130_fd_pr/combined_models/sky130.lib.spice tt
+.options GMIN=1e-10 RELTOL=1e-4 ABSTOL=1e-12
+
+* Design variables injected by my_testbench_template/src/ngspice.py
+.include 'design_var.inc'
+.param
++W_casc_n={W_casc_n_base*20}
++W_casc_p={W_casc_p_base*20}
++W_fold={W_fold_base*4}
++W_in={W_in_base*4}
++W_mirr={W_mirr_base*20}
++W_sink={W_sink_base*20}
+
+
+
+*********** Unit Under Test ********************
+.include "folded_cascode_ota_bandp.cir"
+*********** Test-bench *************************
+
+VVDD  VDD_NODE   0   DC 1.8
+VVSS  VSS_NODE   0   DC 0
+VBN   VBN_NODE   0   DC 0.7
+VBP   VBP_NODE   0   DC 1.0
+
+VINP  VINP_NODE  0   DC 0.9 AC 0.5
+VINN  VINN_NODE  0   DC 0.9 AC -0.5
+
+VTAIL VDD_NODE VTAIL_NODE DC 0
+ITAIL_SRC VTAIL_NODE 0 DC 1e-05
+
+XOTA  VSS_NODE VDD_NODE VFINAL_OUT_NODE VINN_NODE VINP_NODE VBN_NODE VBP_NODE VTAIL_NODE FOLDED_CASCODE_OTA
+CLOAD VFINAL_OUT_NODE VSS_NODE 1e-12
+
+.op
+.ac dec 200 1 1G
+
+.control
+set noaskquit
+op
+ac dec 200 1 1G
+
+let pwr = abs(i(VVDD)[0]) * 1.8
+echo "POWER_VALUE"
+print pwr
+
+let vout_ac = ac1.v(VFINAL_OUT_NODE)
+let gain_db_vec = 20*log10(mag(vout_ac))
+let freq_vec = frequency
+
+* Find peak within reasonable range (10Hz to 100MHz)
+* Use real() because AC vectors are complex-typed
+let gain_peak = -1000
+let fc_idx = 0
+let idx = 0
+while idx < length(gain_db_vec)
+  if (real(freq_vec[idx]) > 10) & (real(freq_vec[idx]) < 1e8)
+    if real(gain_db_vec[idx]) > real(gain_peak)
+      let gain_peak = gain_db_vec[idx]
+      let fc_idx = idx
+    end
+  end
+  let idx = idx + 1
+end
+let fc_center = freq_vec[fc_idx]
+echo "CENTER_FREQ_VALUE"
+print fc_center
+echo "PEAK_GAIN_VALUE"
+print gain_peak
+
+* Find -3dB points (use real() for complex-typed vectors)
+let target = gain_peak - 3
+let idx = 0
+while idx < fc_idx
+  if (real(gain_db_vec[idx]) < real(target)) & (real(gain_db_vec[idx+1]) >= real(target))
+    let f_low = freq_vec[idx]
+    break
+  end
+  let idx = idx + 1
+end
+echo "F_LOW_VALUE"
+print f_low
+
+let idx = fc_idx
+while idx < length(gain_db_vec) - 1
+  if (real(gain_db_vec[idx]) >= real(target)) & (real(gain_db_vec[idx+1]) < real(target))
+    let f_high = freq_vec[idx]
+    break
+  end
+  let idx = idx + 1
+end
+echo "F_HIGH_VALUE"
+print f_high
+
+let bandwidth = f_high - f_low
+let q_actual = fc_center / bandwidth
+echo "BANDWIDTH_VALUE"
+print bandwidth
+echo "Q_VALUE"
+print q_actual
+
+let idx = 0
+while idx < length(gain_db_vec) - 1
+  if (real(gain_db_vec[idx]) > 0) & (real(gain_db_vec[idx+1]) <= 0)
+    let ugbw_hz = freq_vec[idx]
+    break
+  end
+  let idx = idx + 1
+end
+echo "UGBW_VALUE"
+print ugbw_hz
+
+let bpf_center_freq_hz = real(fc_center) * 1e-6
+let bpf_peak_gain_db = real(gain_peak)
+let bpf_q_factor = real(q_actual)
+print bpf_center_freq_hz bpf_peak_gain_db bpf_q_factor
+
+quit
+.endc
+.end

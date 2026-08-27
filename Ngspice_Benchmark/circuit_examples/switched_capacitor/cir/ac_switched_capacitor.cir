@@ -1,0 +1,15 @@
+* Switched Capacitor OTA Open-Loop AC Analysis
+.subckt SWITCHED_CAPACITOR_OTA VINP VINN VOUT VDD GND
+XM1 VD1 VINP VTAIL GND sky130_fd_pr__nfet_01v8 l={L_op} w={W_op1} m=4
+XM2 VD2 VINN VTAIL GND sky130_fd_pr__nfet_01v8 l={L_op} w={W_op1} m=4
+XMTAIL VTAIL VBIAS GND GND sky130_fd_pr__nfet_01v8 l={L_op_base*2} w={W_op1} m=4
+XM3 VD1 VD1 VDD VDD sky130_fd_pr__pfet_01v8 l={L_op} w={W_op2} m=4
+XM4 VD2 VD1 VDD VDD sky130_fd_pr__pfet_01v8 l={L_op} w={W_op2} m=4
+XM5 VOUT VD2 VDD VDD sky130_fd_pr__pfet_01v8 l={L_op} w={W_op2_base*4} m=4
+XM6 VOUT VBIAS GND GND sky130_fd_pr__nfet_01v8 l={L_op_base*2} w={W_op1_base*2} m=2.0
+CC VD2 VOUT 2p
+CL VOUT GND 2e-12
+
+XMBIAS VBIAS VBIAS GND GND sky130_fd_pr__nfet_01v8 l={L_op_base*4} w={W_op1} m=1
+RBIAS VDD VBIAS 18000.0
+.ends SWITCHED_CAPACITOR_OTA

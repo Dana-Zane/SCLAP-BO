@@ -1,0 +1,114 @@
+* Folded-Cascode OTA with Sallen-Key HIGH-PASS Filter
+.lib ../../device_models/sky130_fd_pr/combined_models/sky130.lib.spice tt
+.options GMIN=1e-10 RELTOL=1e-4 ABSTOL=1e-12
+
+* Design variables injected by my_testbench_template/src/ngspice.py
+.include 'design_var.inc'
+.param
++W_casc_n={W_casc_n_base*20}
++W_casc_p={W_casc_p_base*20}
++W_fold={W_fold_base*4}
++W_in={W_in_base*4}
++W_mirr={W_mirr_base*20}
++W_sink={W_sink_base*20}
+
+
+
+*********** Unit Under Test ********************
+.include "folded_cascode_ota_hp.cir"
+*********** Test-bench *************************
+
+VVDD  VDD_NODE   0   DC 1.8
+VVSS  VSS_NODE   0   DC 0
+VBN   VBN_NODE   0   DC 0.7
+VBP   VBP_NODE   0   DC 1.0
+
+VINP  VINP_NODE  0   DC 0.9 AC 0.5
+VINN  VINN_NODE  0   DC 0.9 AC -0.5
+
+VTAIL VDD_NODE VTAIL_NODE DC 0
+ITAIL_SRC VTAIL_NODE 0 DC 1e-05
+
+XOTA  VSS_NODE VDD_NODE VFINAL_OUT_NODE VINN_NODE VINP_NODE VBN_NODE VBP_NODE VTAIL_NODE FOLDED_CASCODE_OTA
+CLOAD VFINAL_OUT_NODE VSS_NODE 1e-12
+
+.op
+.ac dec 200 1 1G
+
+.control
+set noaskquit
+op
+ac dec 200 1 1G
+
+let pwr = abs(i(VVDD)[0]) * 1.8
+echo "POWER_VALUE"
+print pwr
+
+let vout_ac = ac1.v(VFINAL_OUT_NODE)
+let gain_db_vec = 20*log10(mag(vout_ac))
+let freq_vec = frequency
+
+* Find peak gain across entire response (passband = peak, not at 1GHz)
+let gain_peak = -1000
+let peak_idx = 0
+let idx = 0
+while idx < length(gain_db_vec)
+  if gain_db_vec[idx] > gain_peak
+    let gain_peak = gain_db_vec[idx]
+    let peak_idx = idx
+  end
+  let idx = idx + 1
+end
+echo "GAIN_VALUE"
+print gain_peak
+
+* Find -3dB cutoff on the LOW-frequency side of the peak
+let target = gain_peak - 3
+let idx = 0
+while idx < peak_idx
+  if (gain_db_vec[idx] < target) & (gain_db_vec[idx+1] >= target)
+    let fc_3db = freq_vec[idx]
+    break
+  end
+  let idx = idx + 1
+end
+echo "CUTOFF_VALUE"
+print fc_3db
+
+let idx = 0
+while idx < length(gain_db_vec) - 1
+  if (gain_db_vec[idx] > 0) & (gain_db_vec[idx+1] <= 0)
+    let ugbw_hz = freq_vec[idx]
+    break
+  end
+  let idx = idx + 1
+end
+echo "UGBW_VALUE"
+print ugbw_hz
+
+let fc_tenth = fc_3db / 10
+let gain_tenth = gain_db_vec[0]
+let idx = 0
+while idx < length(freq_vec) - 1
+  if (freq_vec[idx] <= fc_tenth) & (freq_vec[idx+1] > fc_tenth)
+    let gain_tenth = gain_db_vec[idx]
+    break
+  end
+  let idx = idx + 1
+end
+let stopband_att = gain_peak - gain_tenth
+echo "STOPBAND_VALUE"
+print stopband_att
+
+let rolloff = (gain_db_vec[idx] - gain_tenth) / log10(fc_3db / fc_tenth)
+echo "ROLLOFF_VALUE"
+print rolloff
+
+let hpf_cutoff_hz = real(fc_3db) * 1e-6
+let hpf_passband_gain_db = real(gain_peak)
+let hpf_stopband_atten_db = real(stopband_att)
+print hpf_cutoff_hz hpf_passband_gain_db hpf_stopband_atten_db
+
+quit
+.endc
+.end

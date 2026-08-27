@@ -1,0 +1,22 @@
+* Voltage-Controlled Oscillator - Multi-point characterization
+.subckt VOLTAGE_CONTROLLED_OSC N0 N1 N2 N3 N4 VDD GND
+*** Stage 0 (10% weaker PMOS for symmetry breaking)
+XMPINV0 N1 N0 VDD VDD sky130_fd_pr__pfet_01v8 l={L_inv_p} w={{W_inv_p}*0.9} m=1
+XMNINV0 N1 N0 GND GND sky130_fd_pr__nfet_01v8 l={L_inv_n} w={W_inv_n} m=1
+
+*** Stage 1
+XMPINV1 N2 N1 VDD VDD sky130_fd_pr__pfet_01v8 l={L_inv_p} w={W_inv_p} m=1
+XMNINV1 N2 N1 GND GND sky130_fd_pr__nfet_01v8 l={L_inv_n} w={W_inv_n} m=1
+
+*** Stage 2
+XMPINV2 N3 N2 VDD VDD sky130_fd_pr__pfet_01v8 l={L_inv_p} w={W_inv_p} m=1
+XMNINV2 N3 N2 GND GND sky130_fd_pr__nfet_01v8 l={L_inv_n} w={W_inv_n} m=1
+
+*** Stage 3
+XMPINV3 N4 N3 VDD VDD sky130_fd_pr__pfet_01v8 l={L_inv_p} w={W_inv_p} m=1
+XMNINV3 N4 N3 GND GND sky130_fd_pr__nfet_01v8 l={L_inv_n} w={W_inv_n} m=1
+
+*** Stage 4
+XMPINV4 N0 N4 VDD VDD sky130_fd_pr__pfet_01v8 l={L_inv_p} w={W_inv_p} m=1
+XMNINV4 N0 N4 GND GND sky130_fd_pr__nfet_01v8 l={L_inv_n} w={W_inv_n} m=1
+.ends VOLTAGE_CONTROLLED_OSC

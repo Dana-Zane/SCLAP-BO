@@ -1,0 +1,14 @@
+* 2-Input NAND Gate
+.subckt NAND_GATE A B Y VDD GND
+* NAND Gate: Y = NOT(A AND B)
+* PMOS pull-up (parallel)
+XMP1 Y A VDD VDD sky130_fd_pr__pfet_01v8 l={L_pmos} w={W_pmos}
+XMP2 Y B VDD VDD sky130_fd_pr__pfet_01v8 l={L_pmos} w={W_pmos}
+
+* NMOS pull-down (series)
+XMN1 Y A N1 GND sky130_fd_pr__nfet_01v8 l={L_nmos} w={W_nmos}
+XMN2 N1 B GND GND sky130_fd_pr__nfet_01v8 l={L_nmos} w={W_nmos}
+
+* Load
+CL Y GND 1e-14
+.ends NAND_GATE

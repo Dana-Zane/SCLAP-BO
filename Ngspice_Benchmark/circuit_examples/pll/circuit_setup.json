@@ -1,0 +1,627 @@
+{
+  "ranges": [
+    {
+      "params": [
+        "LR8"
+      ],
+      "min": 1e-06,
+      "max": 0.001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "LR1"
+      ],
+      "min": 1e-06,
+      "max": 0.001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "LR2"
+      ],
+      "min": 1e-06,
+      "max": 0.001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "AC9"
+      ],
+      "min": 1e-10,
+      "max": 2.5e-09,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "AC10"
+      ],
+      "min": 1e-10,
+      "max": 2.5e-09,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "LMna"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "WMna"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "LMn1"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "WMn1"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "LMp1"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "WMp1"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "LMn2"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "WMn2"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "LMp2"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "WMp2"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "LMn5"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "WMn5"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "LMn4"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "WMn4"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "LMn3"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "WMn3"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp1"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp1"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln1"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn1"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln2"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn2"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln3"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn3"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp2"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp2"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp3"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp3"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln4"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn4"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln5"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn5"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp4"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp4"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp5"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp5"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln6"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn6"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln7"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn7"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp6"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp6"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp7"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp7"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln8"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn8"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln9"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn9"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp8"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp8"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp9"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp9"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln10"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn10"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln11"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn11"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp10"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp10"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp11"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp11"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln12"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn12"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln13"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn13"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp12"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp12"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp13"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp13"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp14"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp14"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln14"
+      ],
+      "min": 2e-07,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn14"
+      ],
+      "min": 5e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    }
+  ],
+  "testbenches": [
+    "PLL1.circuit"
+  ],
+  "objectives": [
+    "min fom"
+  ],
+  "constraints": []
+}

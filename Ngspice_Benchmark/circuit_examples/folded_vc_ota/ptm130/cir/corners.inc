@@ -1,0 +1,35 @@
+.ALTER SS_VDD_MAX_TEMP_MAX
+.lib "L130E_HS12_V241.lib.ngspice" SS
+.TEMP 55.0
+.PARAM
++vdd=1.32
+
+.ALTER FF_VDD_MAX_TEMP_MIN
+.lib "L130E_HS12_V241.lib.ngspice" FF
+.TEMP 0.0
+.PARAM
++vdd=1.32
+
+.ALTER SS_VDD_MIN_TEMP_MAX
+.lib "L130E_HS12_V241.lib.ngspice" SS
+.TEMP 55.0
+.PARAM
++vdd=1.08
+
+.ALTER FF_VDD_MIN_TEMP_MIN
+.lib "L130E_HS12_V241.lib.ngspice" FF
+.TEMP 0.0
+.PARAM
++vdd=1.08
+
+.ALTER SNFP_VDD_NOM_TEMP_NOM
+.lib "L130E_HS12_V241.lib.ngspice" SNFP
+.TEMP 25.0
+.PARAM
++vdd=1.2
+
+.ALTER FNSP_VDD_NOM_TEMP_NOM
+.lib "L130E_HS12_V241.lib.ngspice" FNSP
+.TEMP 25.0
+.PARAM
++vdd=1.2

@@ -1,0 +1,6 @@
+*  Design Var
+ .param
++W_inv_p_base=4.0
++W_inv_n_base=4.0
++L_inv_p_base=0.75
++L_inv_n_base=0.75

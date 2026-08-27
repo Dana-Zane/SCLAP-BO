@@ -1,0 +1,24 @@
+* 2-Input XOR Gate (Transmission Gate - FIXED)
+.subckt XOR_GATE A B Y VDD GND
+* Inverters for A and B
+XMP_INVA A_N A VDD VDD sky130_fd_pr__pfet_01v8 l={L_pmos} w={W_pmos}
+XMN_INVA A_N A GND GND sky130_fd_pr__nfet_01v8 l={L_nmos} w={W_nmos}
+
+XMP_INVB B_N B VDD VDD sky130_fd_pr__pfet_01v8 l={L_pmos} w={W_pmos}
+XMN_INVB B_N B GND GND sky130_fd_pr__nfet_01v8 l={L_nmos} w={W_nmos}
+
+* Transmission gate 1: passes A when B=0
+XMP_TG1 N_TG B_N A VDD sky130_fd_pr__pfet_01v8 l={L_pmos} w={{W_pmos}*2}
+XMN_TG1 N_TG B A GND sky130_fd_pr__nfet_01v8 l={L_nmos} w={{W_nmos}*2}
+
+* Transmission gate 2: passes A' when B=1
+XMP_TG2 N_TG B A_N VDD sky130_fd_pr__pfet_01v8 l={L_pmos} w={{W_pmos}*2}
+XMN_TG2 N_TG B_N A_N GND sky130_fd_pr__nfet_01v8 l={L_nmos} w={{W_nmos}*2}
+
+* Output buffer (reduces load on transmission gates)
+XMP_BUF Y N_TG VDD VDD sky130_fd_pr__pfet_01v8 l={L_pmos} w={{W_pmos}*3}
+XMN_BUF Y N_TG GND GND sky130_fd_pr__nfet_01v8 l={L_nmos} w={{W_nmos}*3}
+
+* Load capacitor
+CL Y GND 1e-14
+.ends XOR_GATE

@@ -1,0 +1,54 @@
+.subckt IAC GNDA VDDA VINN VINP VOUT
+* PMOS BIAS CURRENT MIRROR - Cascoded structure
+xm65 VB2 VB2 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=46
+xm0 NET2 VB1 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=184
+xm57 VB1 VB2 NET2 VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=184
+xm1 NET3 VB1 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=184
+xm58 VB4 VB2 NET3 VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=184
+xm3 NET8 VB1 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=184
+xm62 VB3 VB2 NET8 VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=184
+xm2 NET6 VB1 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=184
+xm61 NET7 VB2 NET6 VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=184
+xm4 TAIL VB1 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=368
+xm5 VOUTN VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=184
+xm6 VOUTP VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=184
+xm7 NET049 VB1 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=736
+xm66 NET10 VB2 NET049 VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_GMT} m=7
+
+* FIRST STAGE - PMOS Differential Pair with NMOS Folded Cascode
+xm8 DM_2 VINN TAIL TAIL sky130_fd_pr__pfet_01v8 l={L} w={W_GM1} m=11
+xm9 NET063 VINP TAIL TAIL sky130_fd_pr__pfet_01v8 l={L} w={W_GM1} m=11
+xm19 DM_2 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=184
+xm20 NET063 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=184
+xm15 VOUTN VB3 DM_2 GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=184
+xm16 VOUTP VB3 NET063 GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=184
+
+* NMOS BIAS GENERATION
+xm14 VB3 VB3 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=23
+xm17 NET54 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=92
+xm12 VB4 VB3 NET54 GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=92
+xm18 NET56 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=92
+xm13 NET7 VB3 NET56 GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=92
+xm64 NET9 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=92
+xm63 VB2 VB3 NET9 GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=92
+
+* SECOND STAGE
+xm10 NET043 VOUTP VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_GM2} m=43
+xm70 NET1 NET043 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_LOAD2} m=33
+xm69 NET10 NET043 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_LOAD2} m=33
+xm67 NET043 VB3 NET1 GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=736
+xm68 NET1 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_LOAD3} m=50
+
+* OUTPUT STAGE
+xm23 VOUT NET10 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w=2 m=11
+xm11 VOUT VOUTP VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w=10 m=9
+
+* COMPENSATION (Indirect Amplifier)
+C0 VOUTP VOUT 1.3e-12
+C1 NET10 NET4 45e-12
+R0 NET4 GNDA 40e3
+
+* BIAS CURRENT SOURCE
+I0 VB1 GNDA 47e-6
+
+.ends IAC

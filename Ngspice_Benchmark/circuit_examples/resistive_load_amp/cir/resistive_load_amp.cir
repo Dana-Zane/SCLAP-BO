@@ -1,0 +1,11 @@
+* Resistive Load Amplifier
+.subckt RESISTIVE_LOAD_AMP VIN VOUT VDD GND
+        * Input transistor (NMOS common-source)
+        XM1 VOUT VIN GND GND sky130_fd_pr__nfet_01v8 l={L_input} w={W_input}
+        
+        * Load resistor
+        RL VDD VOUT {R_load}
+        
+        * Load capacitor
+        CL VOUT GND 1e-14
+.ends RESISTIVE_LOAD_AMP

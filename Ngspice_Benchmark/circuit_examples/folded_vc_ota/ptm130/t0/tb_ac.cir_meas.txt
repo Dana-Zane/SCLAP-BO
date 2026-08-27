@@ -1,0 +1,88 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: ** generated for: eldo
+
+Doing analysis at TEMP = 25.000000 and TNOM = 27.000000
+
+
+Checking parameters for BSIM 3.2 model n_12_hsl130e
+Warning:  Acde = 0.3 is too small.
+
+Checking parameters for BSIM 3.2 model n_12_hsl130e
+Warning:  Acde = 0.3 is too small.
+
+Checking parameters for BSIM 3.2 model n_12_hsl130e
+Warning:  Acde = 0.3 is too small.
+
+Checking parameters for BSIM 3.2 model n_12_hsl130e
+Warning:  Acde = 0.3 is too small.
+
+Checking parameters for BSIM 3.2 model n_12_hsl130e
+Warning:  Acde = 0.3 is too small.
+
+No. of Data Rows : 201
+gdc                 =  5.304096e+01
+gbw                 =  9.698655e+06
+pm_raw              =  -1.277666e+02
+pm = 5.223340e+01
+Doing analysis at TEMP = 25.000000 and TNOM = 27.000000
+
+
+Checking parameters for BSIM 3.2 model n_12_hsl130e
+Warning:  Acde = 0.3 is too small.
+
+Checking parameters for BSIM 3.2 model n_12_hsl130e
+Warning:  Acde = 0.3 is too small.
+
+Checking parameters for BSIM 3.2 model n_12_hsl130e
+Warning:  Acde = 0.3 is too small.
+
+Checking parameters for BSIM 3.2 model n_12_hsl130e
+Warning:  Acde = 0.3 is too small.
+
+Checking parameters for BSIM 3.2 model n_12_hsl130e
+Warning:  Acde = 0.3 is too small.
+
+No. of Data Rows : 1
+idd = 4.280181e-04
+vov_mnmvbias = 1.304359e-01
+vov_mnmbiasn = 2.657322e-01
+vov_mnmbiasp = 2.657110e-01
+vov_mpmbiasp = 6.500867e-01
+vov_mpm6 = 2.779835e-01
+vov_mpm5 = 2.779835e-01
+vov_mpm4 = 6.665737e-01
+vov_mpm3 = 3.964752e-01
+vov_mpm2 = 3.963244e-01
+vov_mpm1 = 3.963244e-01
+vov_mpm0 = 3.964752e-01
+vov_mnm9 = 3.338824e-01
+vov_mnm8 = 3.338824e-01
+vov_mnm7 = 5.473308e-02
+vov_mnm6 = 5.473308e-02
+vov_mnm5 = 2.202532e-02
+vov_mnm4 = 2.202532e-02
+vov_mnm1 = 5.642264e-02
+vov_mnm0 = 5.642264e-02
+delta_mnmvbias = 2.007298e-01
+delta_mnmbiasn = 3.231956e-01
+delta_mnmbiasp = 4.274670e-02
+delta_mpmbiasp = 3.402216e-01
+delta_mpm6 = 5.701015e-01
+delta_mpm5 = 5.701015e-01
+delta_mpm4 = -5.09674e-01
+delta_mpm3 = 3.781030e-01
+delta_mpm2 = 3.181705e-01
+delta_mpm1 = 3.181705e-01
+delta_mpm0 = 3.781030e-01
+delta_mnm9 = -1.22557e-03
+delta_mnm8 = -1.22557e-03
+delta_mnm7 = 7.842388e-01
+delta_mnm6 = 7.842388e-01
+delta_mnm5 = 4.144398e-01
+delta_mnm4 = 4.144398e-01
+delta_mnm1 = 1.347329e-01
+delta_mnm0 = 1.347329e-01
+ngspice-41 done

@@ -1,0 +1,89 @@
+* 2-Input NAND Gate
+.lib ../../device_models/sky130_fd_pr/combined_models/sky130.lib.spice tt
+.global VDD GND
+.temp 27.0
+
+* Design variables injected by my_testbench_template/src/ngspice.py
+.include 'design_var.inc'
+
+*********** Unit Under Test ********************
+.include "nand_gate.cir"
+*********** Test-bench *************************
+XNAND A B Y VDD GND NAND_GATE
+* Supply
+VDD VDD GND DC 1.8
+
+* Test pattern for delay measurement
+* Cycle 1: A=1, B=0->1 (test tPHL when both inputs go high)
+* Cycle 2: A=1, B=1->0 (test tPLH when one input goes low)
+VA A GND PWL(0 0 1n 1.8 20n 1.8)
+VB B GND PWL(0 0 5n 0 6n 1.8 15n 1.8 16n 0 25n 0)
+
+.control
+set noaskquit
+
+* Operating point for static power
+op
+let i_static = abs(i(VDD))
+
+echo "I_STATIC:" > nand_results.txt
+print i_static >> nand_results.txt
+
+* Transient simulation
+tran 10p 30n
+
+* Save currents for power calculation
+let i_vdd = -i(VDD)
+
+* Measure tPHL (B rising at 6ns, Y should fall)
+meas tran v_b_50_rise WHEN v(B)=0.9 CROSS=1
+meas tran v_y_50_fall WHEN v(Y)=0.9 CROSS=1
+let tphl_val = (v_y_50_fall - v_b_50_rise) * 1e12
+
+echo "TPHL_PS:" >> nand_results.txt
+print tphl_val >> nand_results.txt
+
+* Measure tPLH (B falling at 16ns, Y should rise)
+meas tran v_b_50_fall WHEN v(B)=0.9 CROSS=2
+meas tran v_y_50_rise WHEN v(Y)=0.9 CROSS=2
+let tplh_val = (v_y_50_rise - v_b_50_fall) * 1e12
+
+echo "TPLH_PS:" >> nand_results.txt
+print tplh_val >> nand_results.txt
+
+* Average delay
+let avg_delay_val = (tphl_val + tplh_val) / 2
+
+echo "AVG_DELAY_PS:" >> nand_results.txt
+print avg_delay_val >> nand_results.txt
+
+* Dynamic power (average over simulation)
+let i_avg = mean(abs(i_vdd))
+let power_dynamic = i_avg * 1.8 * 1e6
+
+echo "I_DYNAMIC:" >> nand_results.txt
+print i_avg >> nand_results.txt
+
+* Output voltage levels (measure actual VOH and VOL)
+let voh_val = vecmax(v(Y))
+let vol_val = vecmin(v(Y))
+
+echo "VOH:" >> nand_results.txt
+print voh_val >> nand_results.txt
+
+echo "VOL:" >> nand_results.txt
+print vol_val >> nand_results.txt
+
+* my_testbench_template parse-friendly post-processed measures
+let avg_delay_ps = avg_delay_val
+let power_total_uw = (abs(op1.vdd#branch) + i_avg) * 1.8 * 1e6
+let energy_per_transition_fj = i_avg * 1.8 / 100e6 * 1e15
+let noise_margin_high = voh_val - 1.26
+let noise_margin_low = 0.54 - vol_val
+let fom = ((noise_margin_high + noise_margin_low) / 2 / 0.5) / (energy_per_transition_fj / 100 * avg_delay_ps / 10000)
+print avg_delay_ps power_total_uw energy_per_transition_fj noise_margin_high noise_margin_low fom
+
+quit
+.endc
+
+.end

@@ -1,0 +1,66 @@
+{
+  "constraints": [
+    "FOM > 0.10",
+    "VREF > 0.72",
+    "VREF < 0.76",
+    "POWER_UW < 110",
+    "LINE_REGULATION_PERCENT < 5.0",
+    "PSRR_100HZ_DB > 25"
+  ],
+  "objectives": [
+    "max FOM"
+  ],
+  "ranges": [
+    {
+      "grid": 5.0,
+      "max": 40.0,
+      "min": 5.0,
+      "params": [
+        "W_mp"
+      ]
+    },
+    {
+      "grid": 1.0,
+      "max": 5.0,
+      "min": 1.0,
+      "params": [
+        "L_mp"
+      ]
+    },
+    {
+      "grid": 5.0,
+      "max": 30.0,
+      "min": 5.0,
+      "params": [
+        "W_mn"
+      ]
+    },
+    {
+      "grid": 0.5,
+      "max": 2.0,
+      "min": 0.5,
+      "params": [
+        "L_mn"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 100.0,
+      "min": 10.0,
+      "params": [
+        "L_ra"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 200.0,
+      "min": 30.0,
+      "params": [
+        "L_rb"
+      ]
+    }
+  ],
+  "testbenches": [
+    "tb.cir"
+  ]
+}

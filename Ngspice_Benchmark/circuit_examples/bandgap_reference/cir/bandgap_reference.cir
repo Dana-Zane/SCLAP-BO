@@ -1,0 +1,27 @@
+* Bandgap Reference Circuit - Complete Characterization
+.subckt BANDGAP_REFERENCE VDD GND VREF QP1 QP2 QP3 NET1 NET5 NET6 NET7
+    *** Current Mirror (PMOS) - This is the main current source
+    XMP1 NET1 NET2 VDD VDD sky130_fd_pr__pfet_01v8_lvt l={L_mp} w={W_mp} m=3
+    XMP2 NET2 NET2 VDD VDD sky130_fd_pr__pfet_01v8_lvt l={L_mp} w={W_mp} m=3
+    XMP3 NET3 NET2 VDD VDD sky130_fd_pr__pfet_01v8_lvt l={L_mp} w={W_mp} m=1
+    
+    *** NMOS devices (NOT self-biased - just diode-connected for low impedance)
+    XMN1 NET1 NET1 QP1 GND sky130_fd_pr__nfet_01v8_lvt l={L_mn} w={W_mn} m=2
+    XMN2 NET2 NET2 RA_TOP GND sky130_fd_pr__nfet_01v8_lvt l={L_mn} w={W_mn} m=2
+    
+    *** Startup Circuit
+    XMP4 NET4 NET2 VDD VDD sky130_fd_pr__pfet_01v8_lvt l={L_mp} w=5.0 m=1
+    XMP5 NET5 NET2 NET4 VDD sky130_fd_pr__pfet_01v8_lvt l={L_mp} w=5.0 m=1
+    XMP6 NET7 NET6 NET2 VDD sky130_fd_pr__pfet_01v8_lvt l={L_mp} w=5.0 m=2
+    XMN3 NET6 NET6 NET8 GND sky130_fd_pr__nfet_01v8_lvt l=7.0 w=1.0 m=1
+    XMN4 NET8 NET8 GND GND sky130_fd_pr__nfet_01v8_lvt l=7.0 w=1.0 m=1
+    
+    *** BJTs
+    XQP1 GND GND QP1 VDD sky130_fd_pr__pnp_05v5_W3p40L3p40 m=1
+    XQP2 GND GND QP2 VDD sky130_fd_pr__pnp_05v5_W3p40L3p40 m=8
+    XQP3 GND GND QP3 VDD sky130_fd_pr__pnp_05v5_W3p40L3p40 m=1
+    
+    *** Resistors
+    XRA RA_TOP QP2 VDD sky130_fd_pr__res_high_po_1p41 w=1.41 l={L_ra}
+    XRB NET3 QP3 VDD sky130_fd_pr__res_high_po_1p41 w=1.41 l={L_rb}
+.ends BANDGAP_REFERENCE

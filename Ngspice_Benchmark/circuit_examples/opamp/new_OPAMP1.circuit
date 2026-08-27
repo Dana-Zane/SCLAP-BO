@@ -1,0 +1,61 @@
+* =========================================================================
+* AC/DC characterization testbench for OPAMP1
+* Metrics:
+*   gain  - low-frequency open-loop gain estimate, dB
+*   gbw   - unity-gain frequency of the estimated open-loop response, Hz
+*   pm    - unity-feedback phase margin estimate, deg
+*   power - DC supply power, W
+* =========================================================================
+.TEMP 27
+.param vddnom=3.3
+.param vcm='vddnom/2'
+.param cload_f=50e-15
+.csparam vddnom_sp = {vddnom}
+
+VDD  vdda 0 {vddnom}
+Vpd  pd   0 0
+Vxpd xpd  0 {vddnom}
+
+* Keep the non-inverting input at the benchmark common-mode voltage and
+* apply a 1-V small-signal differential stimulus against the AC-grounded
+* inverting input.
+Vinp inp 0 DC {vcm} AC 1
+
+X1 inn inp out pd xpd vdda 0 OPAMP1
+
+* Rfb sets a valid DC operating point in unity feedback.  Cac makes the
+* inverting input an AC ground, so v(out)/(v(inp)-v(inn)) estimates the
+* open-loop differential response around that operating point.
+Rfb out inn 1e12
+Cac inn 0 1e-3
+
+Cload out 0 {cload_f}
+
+.control
+set noaskquit
+ac dec 50 1 10G
+
+let aol = v(out)/(v(inp)-v(inn))
+let aol_db = db(aol)
+let aol_phase_deg = 180/3.141592653589793*cphase(aol)
+
+meas ac gain find aol_db at=1
+meas ac gbw when aol_db=0 fall=1
+meas ac phase_at_unity find aol_phase_deg when aol_db=0 fall=1
+let pm = 180 + phase_at_unity
+print gain gbw pm
+
+op
+let vout_dc = v(out)
+let vout_mid_error = abs(v(out)-$&vddnom_sp/2)
+let power = abs(@vdd[i]*$&vddnom_sp)
+
+print power vout_dc vout_mid_error
+quit
+.endc
+
+.INCLUDE subcircuit_files/OPAMP1.sub
+.INCLUDE subcircuit_files/PRIMITIVE.sub
+.include 'design_var.inc'
+.include 'nominal.corner'
+.END

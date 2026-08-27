@@ -1,0 +1,2 @@
+ net1           v(VREF)        vid1#branch    vid2#branch    vid3#branch    vsup#branch   
+ 5.7753864e-01  7.5839841e-01  5.9733742e-05  5.8688781e-05  0.0000000e+00 -1.3975338e-04 

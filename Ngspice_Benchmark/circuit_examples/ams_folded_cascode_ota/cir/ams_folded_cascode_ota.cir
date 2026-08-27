@@ -1,0 +1,21 @@
+.subckt FOLDED_CASCODE_OTA VSS VDD VOUT VINN VINP VBN VBP VTAIL 
+* PMOS differential input pair
+XM1 NET1 VINP VTAIL VDD sky130_fd_pr__pfet_01v8 w={W_in} l=0.15
+XM2 VOUT VINN VTAIL VDD sky130_fd_pr__pfet_01v8 w={W_in} l=0.15
+
+* NMOS folding devices
+XM3 NET1 VBN NET2 VSS sky130_fd_pr__nfet_01v8 w={W_fold} l=0.15
+XM4 VOUT VBN NET3 VSS sky130_fd_pr__nfet_01v8 w={W_fold} l=0.15
+
+* NMOS cascode (bottom) - FIXED: NET2 and NET3 connect to folding devices
+XM5 NET2 VBN VSS VSS sky130_fd_pr__nfet_01v8 w={W_casc_n} l=0.15
+XM6 NET3 VBN VSS VSS sky130_fd_pr__nfet_01v8 w={W_casc_n} l=0.15
+
+* PMOS current mirror loads
+XM7 NET1 NET1 NET5 VDD sky130_fd_pr__pfet_01v8 w={W_sink} l=0.15
+XM8 VOUT NET1 NET6 VDD sky130_fd_pr__pfet_01v8 w={W_sink} l=0.15
+
+* PMOS cascode (top)
+XM9  NET5 VBP VDD VDD sky130_fd_pr__pfet_01v8 w={W_mirror} l=0.15
+XM10 NET6 VBP VDD VDD sky130_fd_pr__pfet_01v8 w={W_casc_p} l=0.15
+.ends FOLDED_CASCODE_OTA

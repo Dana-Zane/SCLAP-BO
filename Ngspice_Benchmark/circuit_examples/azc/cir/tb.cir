@@ -1,0 +1,43 @@
+* AZC_OTA Amplifier Testbench
+.lib ../../device_models/sky130_fd_pr/combined_models/sky130.lib.spice tt
+
+* Design variables injected by my_testbench_template/src/ngspice.py
+.include 'design_var.inc'
+
+
+
+*********** Unit Under Test ********************
+.include "azc.cir"
+*********** Test-bench *************************
+
+
+VDD VDD 0 DC 1.8
+VSS VSS 0 DC 0
+VINP VINP 0 DC 0.3 AC 0.5
+VINN VINN 0 DC 0.3 AC -0.5
+
+XDUT VSS VDD VINN VINP VOUT AZC_OTA
+
+CLOAD VOUT 0 15e-9
+RLOAD VOUT 0 25e3
+
+.control
+op
+let vdd_current = abs(i(VDD))
+let power_dc = vdd_current * 1.8 * 1e6
+print power_dc
+
+ac dec 100 1 10g
+let gain_db = vdb(VOUT)
+let dc_gain_db = gain_db[0]
+print dc_gain_db
+
+meas ac ugbw_raw WHEN gain_db=0 CROSS=1
+* my_testbench_template parse-friendly post-processed measures
+let power_for_fom = op1.power_dc
+let ugbw = ugbw_raw * 1e-3
+let fom = dc_gain_db * ugbw / power_for_fom
+print ugbw fom
+quit
+.endc
+.end

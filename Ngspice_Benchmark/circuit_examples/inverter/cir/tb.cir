@@ -1,0 +1,90 @@
+* Inverter Analysis from Extracted Netlist
+.lib ../../device_models/sky130_fd_pr/combined_models/sky130.lib.spice tt
+.option scale=1e-6
+.option warn=0
+
+* Design variables injected by my_testbench_template/src/ngspice.py
+.include 'design_var.inc'
+.param
++W_nmos={W_nmos_base*20}
++W_pmos={W_pmos_base*20}
+
+
+
+*********** Unit Under Test ********************
+.include "inverter.cir"
+*********** Test-bench *************************
+
+
+* Main circuit for DC sweep
+Vdd VDD 0 DC 1.8
+Vss VSS 0 DC 0
+Vin IN 0 DC 0 PULSE(0 1.8 100p 100p 100p 1n 2n)
+Xinv OUT IN VSS VDD SKY130_INV
+Cout OUT 0 10e-15
+
+* DC Sweep Analysis for Gain
+.dc Vin 0 1.8 0.01
+
+.control
+run
+
+* Calculate DC gain as maximum derivative dVout/dVin
+let vout_deriv = deriv(v(OUT))
+let gain_linear = abs(vout_deriv)
+let gain_db = db(gain_linear)
+meas dc dc_gain_db MAX gain_db
+
+
+print dc_gain_db 
+
+.endc
+
+* Transient Analysis for Power and Delay
+.control
+destroy all
+reset
+
+dc Vin 0 1.8 0.01
+let vout_deriv_pp = deriv(v(OUT))
+let gain_linear_pp = abs(vout_deriv_pp)
+let gain_db_pp = db(gain_linear_pp)
+meas dc dc_gain_db_pp MAX gain_db_pp
+let dc_gain_for_fom = vecmax(gain_db_pp)
+
+tran 1p 4n
+
+* Calculate power
+let power = v(VDD) * (-i(Vdd))
+let avg_power_calc = mean(power)
+
+* Measure static current during stable low period (before first pulse)
+meas tran static_current AVG i(Vdd) from=10p to=90p
+let static_power_abs = abs(static_current) * 1.8
+
+* Dynamic power
+let dynamic_power = abs(avg_power_calc - static_power_abs)
+
+* Measure propagation delays at 50% threshold (0.9V)
+* Rising edge (LOW to HIGH) - first crossing
+meas tran t_in_50_rise WHEN v(IN)=0.9 CROSS=1
+meas tran t_out_50_rise WHEN v(OUT)=0.9 CROSS=1
+let tplh = t_out_50_rise - t_in_50_rise
+
+* Falling edge (HIGH to LOW) - second crossing
+meas tran t_in_50_fall WHEN v(IN)=0.9 CROSS=2
+meas tran t_out_50_fall WHEN v(OUT)=0.9 CROSS=2
+let tphl = t_out_50_fall - t_in_50_fall
+let average_delay = (tplh + tphl)/2
+
+* my_testbench_template parse-friendly post-processed measures
+let dynamic_power = dynamic_power * 1e6
+let average_delay = average_delay * 1e12
+let fom = dc1.dc_gain_for_fom / (average_delay * dynamic_power)
+
+print dynamic_power average_delay fom
+
+quit
+.endc
+
+.end

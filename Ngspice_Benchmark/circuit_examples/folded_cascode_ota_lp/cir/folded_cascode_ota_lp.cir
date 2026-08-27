@@ -1,0 +1,37 @@
+.subckt FOLDED_CASCODE_OTA VSS VDD VOUT VINN VINP VBN VBP VTAIL 
+* PMOS differential input pair
+XM1 N1 VINP VTAIL VDD sky130_fd_pr__pfet_01v8 w={W_in_base} l=0.15
+XM2 N2 VINN VTAIL VDD sky130_fd_pr__pfet_01v8 w={W_in_base} l=0.15
+
+* NMOS folding devices
+XM3 N1 VBN NC1 VSS sky130_fd_pr__nfet_01v8 w={W_fold_base} l=0.15
+XM4 N2 VBN NC2 VSS sky130_fd_pr__nfet_01v8 w={W_fold_base} l=0.15
+
+* NMOS cascode (bottom)
+XM5 NC1 VBN VSS VSS sky130_fd_pr__nfet_01v8 w={W_casc_n_base} l=0.15
+XM6 NC2 VBN VSS VSS sky130_fd_pr__nfet_01v8 w={W_casc_n_base} l=0.15
+
+* PMOS current mirror loads
+XM7 N1 N1 NP1 VDD sky130_fd_pr__pfet_01v8 w={W_sink_base} l=0.15
+XM8 N2 N1 NP2 VDD sky130_fd_pr__pfet_01v8 w={W_sink_base} l=0.15
+
+* PMOS cascode (top)
+XM9  NP1 VBP VDD VDD sky130_fd_pr__pfet_01v8 w={W_mirr_base} l=0.15
+XM10 NP2 VBP VDD VDD sky130_fd_pr__pfet_01v8 w={W_casc_p_base} l=0.15
+
+* Output connection
+ROUT N2 VOTA_OUT 0.01
+
+* Sallen-Key Low-Pass Filter
+R1 VOTA_OUT VNODE1 {R1}
+R2 VNODE1 VBUF_IN {R2}
+C2 VBUF_IN VSS {C2}
+C1 VNODE1 VOUT {C1}
+
+* DC bias for VBUF_IN (caps block DC, node would float without this)
+RBIAS VBUF_IN VSS 10G
+
+* Unity-gain buffer
+EBUFFER VOUT VSS VBUF_IN VSS 1.0
+RBUF_OUT VOUT VFINAL_OUT 0.01
+.ends FOLDED_CASCODE_OTA

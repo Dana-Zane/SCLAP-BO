@@ -1,0 +1,123 @@
+{
+  "ranges": [
+    {
+      "params": [
+        "Lp156"
+      ],
+      "min": 1e-08,
+      "max": 5e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp156"
+      ],
+      "min": 1e-07,
+      "max": 3e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp02"
+      ],
+      "min": 1e-08,
+      "max": 6e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp02"
+      ],
+      "min": 1e-06,
+      "max": 0.0001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp153"
+      ],
+      "min": 1e-08,
+      "max": 6e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp153"
+      ],
+      "min": 1e-06,
+      "max": 0.0001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Lp01"
+      ],
+      "min": 1e-05,
+      "max": 0.004,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wp01"
+      ],
+      "min": 1e-07,
+      "max": 1e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln01"
+      ],
+      "min": 1e-08,
+      "max": 6e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn01"
+      ],
+      "min": 1e-07,
+      "max": 5e-05,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln154"
+      ],
+      "min": 1e-08,
+      "max": 6e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn154"
+      ],
+      "min": 1e-06,
+      "max": 0.0001,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Ln163"
+      ],
+      "min": 1e-08,
+      "max": 6e-06,
+      "grid": 0.0
+    },
+    {
+      "params": [
+        "Wn163"
+      ],
+      "min": 1e-07,
+      "max": 5e-05,
+      "grid": 0.0
+    }
+  ],
+  "testbenches": [
+    "OSC1.circuit"
+  ],
+  "objectives": [
+    "min fom"
+  ],
+  "constraints": []
+}

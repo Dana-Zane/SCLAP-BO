@@ -1,0 +1,49 @@
+{
+  "constraints": [
+    "FOM > 0.15",
+    "AVG_DELAY_PS < 200",
+    "ENERGY_PER_TRANSITION_FJ < 25",
+    "NOISE_MARGIN_HIGH > 0.3",
+    "NOISE_MARGIN_LOW > 0.3"
+  ],
+  "objectives": [
+    "max FOM"
+  ],
+  "ranges": [
+    {
+      "grid": 0.0,
+      "max": 4.0,
+      "min": 0.5,
+      "params": [
+        "W_pmos"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 2.5,
+      "min": 0.35,
+      "params": [
+        "W_nmos"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 0.3,
+      "min": 0.15,
+      "params": [
+        "L_pmos"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 0.3,
+      "min": 0.15,
+      "params": [
+        "L_nmos"
+      ]
+    }
+  ],
+  "testbenches": [
+    "tb.cir"
+  ]
+}

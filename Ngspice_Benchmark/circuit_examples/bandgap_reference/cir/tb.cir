@@ -1,0 +1,65 @@
+* Bandgap Reference Circuit - Complete Characterization
+    .lib ../../device_models/sky130_fd_pr/combined_models/sky130.lib.spice tt
+    .include /dev/null
+    .global VDD GND
+    .temp 27
+
+* Design variables injected by my_testbench_template/src/ngspice.py
+.include 'design_var.inc'
+
+*********** Unit Under Test ********************
+.include "bandgap_reference.cir"
+*********** Test-bench *************************
+XBGR VDD GND VREF QP1 QP2 QP3 NET1 NET5 NET6 NET7 BANDGAP_REFERENCE
+    *** Measurement Points
+    VID1 QP1 GND DC 0
+    VID2 QP2 GND DC 0
+    VID3 QP3 VREF DC 0
+    VID4 NET7 NET1 DC 0
+    VID5 NET5 NET6 DC 0
+    
+    VSUP VDD GND DC 2.0 AC 1
+    
+    .control
+    op
+    
+    *echo "=== DEBUG NODE VOLTAGES ==="
+    *print v(QP1) v(QP2) v(QP3) v(NET3) v(VREF)
+    *print v(RA_TOP) v(NET1) v(NET2)              
+    *print vid1#branch vid2#branch vid3#branch vsup#branch
+    *echo "==========================="
+    
+    set wr_singlescale
+    set wr_vecnames
+    option numdgt=7
+    wrdata bandgap_op.txt v(VREF) vid1#branch vid2#branch vid3#branch vsup#branch
+
+
+* my_testbench_template parse-friendly measures
+let vref = v(VREF)
+let i_supply = abs(i(VSUP))
+let power_uw = i_supply * 2.0 * 1e6
+print vref i_supply power_uw
+    
+    dc VSUP 1.8 3.3 0.1
+    let vref_line = v(VREF)
+    let line_regulation_percent = (abs(vref_line[length(vref_line)-1] - vref_line[0]) / op1.vref) / (3.3 - 1.8) * 100
+    wrdata bandgap_dc.txt v(VREF)
+    print line_regulation_percent
+    
+    ac dec 10 1 1Meg
+    let psrr_db = db(v(VDD)/v(VREF))
+    let psrr_100hz_db = psrr_db[20]
+    wrdata bandgap_ac.txt frequency psrr_db
+
+    let vref = op1.vref
+    let power_uw = op1.power_uw
+    let line_reg_for_fom = dc1.line_regulation_percent
+    let fom = (abs(psrr_100hz_db) * 100 / (1 + abs(vref - 0.75) * 10)) / (power_uw * line_reg_for_fom)
+    print psrr_100hz_db fom
+    
+    quit
+    .endc
+    
+    .end
+    

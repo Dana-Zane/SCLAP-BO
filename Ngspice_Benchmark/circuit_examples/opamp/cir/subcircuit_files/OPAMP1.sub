@@ -1,0 +1,36 @@
+* Disclaimer:
+* No rights or licenses are granted by ams to Recipient, expressly or by implication, with respect to any proprietary information
+* or patent, copyright mask, work, trademark, trade secret or other intellectual property right owned or controlled by ams, except
+* as expressly provided by ams. Recipient may not remove any copyright notices from the Simulation File. ams may make changes to
+* the Simulation Files or to items referenced therein at any time without notice and is not obligated to support or update these Files.
+* This simulation File is provided by ams "AS IS" and any express or implied warranties, including, but not limited to the implied
+* warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall ams or its suppliers be liable
+* for any direct, indirect, incidental, special, exemplary or consequential damages (including, but not limited to procurement of
+* substitute goods or services, loss of use, data or profits, or business interruption however caused and on any theory of liability,
+* whether in contract, strict liability or tort (including negligence or otherwise) arising in any way out of the use of - or any
+* inability to use - this Simulation File, even if advised of the possibility of such damage.
+* © ams AG
+
+.subckt OPAMP1 inn inp out pd xpd vdda vssa
+xd1 vssa vdda primitive_nwd AREA=Axd1 PJ=Pxd1 M=1
+xi0 vssa net69 primitive_nd AREA=Axi0 PJ=Pxi0 M=1
+xi3 net51 vdda primitive_pd AREA=Axi3 PJ=Pxi3 M=1
+xr0 vssa vdda net51 primitive_rdiffp L=Lr0 W=Wr0 M=1
+xr1 vdda vdda net69 primitive_rdiffp L=Lr1 W=Wr1 M=1
+xcc01 net12 out primitive_cpoly AREA=Ac0 PERI=Pc0 M=1
+mnm12 net13 net56 vssa vssa nmos1 L=Ln11 W=Wn11
+mnm11 net56 net56 vssa vssa nmos1 L=Ln11 W=Wn11
+mnb02 net27 net27 net21 vssa nmos1 L=Ln2 W=Wn2
+mnpd1 net21 xpd vssa vssa nmos1 L=Lnpd1 W=Wnpd1
+mn001 out net13 vssa vssa nmos1 L=Ln1 W=Wn1
+mnpd2 net13 pd vssa vssa nmos1 L=Lnpd2 W=Wnpd2
+mnc01 net13 net69 net12 vssa nmos1 L=Lnc1 W=Wnc1
+mpb02 net27 net51 net158 vdda pmos1 L=Lpb2 W=Wpb2
+mppd1 net158 xpd vdda vdda pmos1 L=Lppd1 W=Wppd1
+mps11 net31 net158 vdda vdda pmos1 L=Lps11 W=Wps11
+mpd11 net56 inn net31 net31 pmos1 L=Lp11 W=Wp11
+mp001 out net158 vdda vdda pmos1 L=Lp1 W=Wp1
+mpd12 net13 inp net31 net31 pmos1 L=Lp11 W=Wp11
+mpb01 net158 net158 vdda vdda pmos1 L=Lpb1 W=Wpb1
+.ends
+

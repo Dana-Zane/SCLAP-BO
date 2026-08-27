@@ -1,0 +1,115 @@
+* Switched Capacitor Integrator Stage
+    .lib ../../device_models/sky130_fd_pr/combined_models/sky130.lib.spice tt
+    .global VDD GND
+    .temp 27.0
+
+* Design variables injected by my_testbench_template/src/ngspice.py
+.include 'design_var.inc'
+.param
++L_op={L_op_base*1}
++L_sw={L_sw_base*1}
++W_op1={W_op1_base*1}
++W_op2={W_op2_base*1}
++W_sw={W_sw_base*1}
+
+*********** Unit Under Test ********************
+.include "switched_capacitor.cir"
+*********** Test-bench *************************
+XSC VIN VSAMP VIN_N VIN_P VOUT CLK1 CLK2 VDD GND SWITCHED_CAPACITOR
+    VIN VIN GND DC 1.0 AC 0.25
+    VREF VIN_P GND DC 0.9
+    VDD VDD GND DC 1.8
+    
+    VCLK1 CLK1 GND PULSE(0 1.8 0 1e-08 1e-08 4.8e-07 1e-06)
+    VCLK2 CLK2 GND PULSE(0 1.8 5e-07 1e-08 1e-08 4.8e-07 1e-06)
+
+    .ic v(VOUT)=0.9 v(VSAMP)=0 v(VIN_N)=0.9
+    
+    .control
+    set noaskquit
+    set wr_singlescale
+    set wr_vecnames
+    
+    op
+    let i_supply_op = abs(i(VDD))
+    echo "I_SUPPLY:" > sc_results.txt
+    echo "$&i_supply_op" >> sc_results.txt
+    
+    let vout_dc = v(VOUT)
+    echo "VOUT_DC:" >> sc_results.txt
+    echo "$&vout_dc" >> sc_results.txt
+    
+    let swing_top = 1.8 - vout_dc
+    let swing_bot = vout_dc
+    let output_swing = swing_top
+    if swing_bot < swing_top
+      let output_swing = swing_bot
+    end
+    echo "OUTPUT_SWING:" >> sc_results.txt
+    echo "$&output_swing" >> sc_results.txt
+
+
+    * my_testbench_template parse-friendly OP measures
+    print i_supply_op vout_dc output_swing
+
+    tran 1e-08 4.9999999999999996e-05 9.999999999999999e-06
+    
+    let vout_final = v(VOUT)[length(v(VOUT))-1]
+    echo "VOUT_FINAL:" >> sc_results.txt
+    echo "$&vout_final" >> sc_results.txt
+    
+    let gain_linear = (vout_final - 0.9) / (1.0 - 0.9)
+    let gain_db = 20 * log10(abs(gain_linear))
+    echo "GAIN_DB:" >> sc_results.txt
+    echo "$&gain_db" >> sc_results.txt
+    
+    let idx_start = 20 * 1e-06 / 1e-08
+    let vout_start = v(VOUT)[idx_start]
+    let delta_target = 0.01 * abs(vout_final - vout_start)
+    let idx = idx_start
+    let idx_settled = idx_start
+    while idx < length(v(VOUT)) - 1
+      if abs(v(VOUT)[idx] - vout_final) < delta_target
+        let idx_settled = idx
+        break
+      end
+      let idx = idx + 1
+    end
+    let settling_time_ns = (time[idx_settled] - time[idx_start]) * 1e9
+    echo "SETTLING_TIME_NS:" >> sc_results.txt
+    echo "$&settling_time_ns" >> sc_results.txt
+    
+    let idx_before = floor((20 * 1e-06 + 4.8e-07) / 1e-08)
+    let idx_after = idx_before + 10
+    let charge_inj_mv = abs(v(VSAMP)[idx_before] - v(VSAMP)[idx_after]) * 1000
+    echo "CHARGE_INJ_MV:" >> sc_results.txt
+    echo "$&charge_inj_mv" >> sc_results.txt
+    
+    let i_supply_avg = mean(abs(i(VDD)))
+    let power_uw = i_supply_avg * 1.8 * 1e6
+    echo "POWER_UW:" >> sc_results.txt
+    echo "$&power_uw" >> sc_results.txt
+
+    * Print transient-domain metrics before FFT switches plots.
+    print vout_final gain_db settling_time_ns charge_inj_mv power_uw
+    
+    set specwindow=hann
+    linearize v(VOUT)
+    let vout_ac = v(VOUT) - mean(v(VOUT))
+    fft vout_ac
+    let mag_fft = mag(vout_ac)
+    let fund_mag = mag_fft[1]
+    let harm2_mag = mag_fft[2]
+    let harm3_mag = mag_fft[3]
+    let harm_sum_sq = harm2_mag*harm2_mag + harm3_mag*harm3_mag
+    let thd = sqrt(harm_sum_sq) / fund_mag
+    let thd_db = 20 * log10(thd)
+    echo "THD_DB:" >> sc_results.txt
+    echo "$&thd_db" >> sc_results.txt
+
+    print thd_db
+
+    quit
+    .endc
+    .end
+    

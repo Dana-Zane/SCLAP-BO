@@ -1,0 +1,12 @@
+VOUT_NOM:
+v(vout) = 1.201000e+00
+I_SUPPLY:
+i(vsup_dc) = -1.03680e-02
+I_LOAD:
+i_load_val = 1.000000e-02
+TEMP_MIN:
+vout_temp_min = 1.200811e+00
+TEMP_MAX:
+vout_temp_max = 1.201301e+00
+AC_VOUT_MAG:
+vout_ac_mag = 4.964713e-04

@@ -1,0 +1,31 @@
+* Switched Capacitor Integrator Stage
+    * Transmission gate switch
+    .subckt SWMOD in out ctrl
+    XN in ctrl out GND sky130_fd_pr__nfet_01v8 l={L_sw} w={W_sw} m=2
+    XP in ctrl out VDD sky130_fd_pr__pfet_01v8 l={L_sw} w={W_sw} m=2
+    .ends
+
+.subckt SWITCHED_CAPACITOR VIN VSAMP VIN_N VIN_P VOUT CLK1 CLK2 VDD GND
+    * Two-stage OTA
+    XM1 VD1 VIN_P VTAIL GND sky130_fd_pr__nfet_01v8 l={L_op} w={W_op1} m=4
+    XM2 VD2 VIN_N VTAIL GND sky130_fd_pr__nfet_01v8 l={L_op} w={W_op1} m=4
+    XMTAIL VTAIL VBIAS GND GND sky130_fd_pr__nfet_01v8 l={L_op_base*2} w={W_op1} m=4
+    XM3 VD1 VD1 VDD VDD sky130_fd_pr__pfet_01v8 l={L_op} w={W_op2} m=4
+    XM4 VD2 VD1 VDD VDD sky130_fd_pr__pfet_01v8 l={L_op} w={W_op2} m=4
+    XM5 VOUT VD2 VDD VDD sky130_fd_pr__pfet_01v8 l={L_op} w={W_op2_base*4} m=4
+    XM6 VOUT VBIAS GND GND sky130_fd_pr__nfet_01v8 l={L_op_base*2} w={W_op1_base*2} m=2.0
+    CC VD2 VOUT 2p
+    
+    * Bias
+    XMBIAS VBIAS VBIAS GND GND sky130_fd_pr__nfet_01v8 l={L_op_base*4} w={W_op1} m=1
+    RBIAS VDD VBIAS 18000.0
+    
+    * Switched capacitor network
+    XSW1 VIN VSAMP CLK1 SWMOD
+    XSW2 VSAMP VIN_N CLK2 SWMOD
+    XSW3 VIN_P VOUT CLK2 SWMOD
+    
+    CSAMP VSAMP GND 2e-12
+    CHOLD VIN_N VOUT 2e-12
+    CLOAD VOUT GND 2e-12
+.ends SWITCHED_CAPACITOR

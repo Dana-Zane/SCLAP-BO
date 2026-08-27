@@ -1,0 +1,48 @@
+{
+  "constraints": [
+    "FOM > 0.5",
+    "TUNING_RANGE_PERCENT > 30",
+    "FREQ_AT_MAX > 500",
+    "VCO_GAIN_MHZ_PER_V > 200"
+  ],
+  "objectives": [
+    "max FOM"
+  ],
+  "ranges": [
+    {
+      "grid": 0.0,
+      "max": 10.0,
+      "min": 0.5,
+      "params": [
+        "W_inv_p_base"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 10.0,
+      "min": 0.5,
+      "params": [
+        "W_inv_n_base"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 2.0,
+      "min": 0.15,
+      "params": [
+        "L_inv_p_base"
+      ]
+    },
+    {
+      "grid": 0.0,
+      "max": 2.0,
+      "min": 0.15,
+      "params": [
+        "L_inv_n_base"
+      ]
+    }
+  ],
+  "testbenches": [
+    "tb.cir"
+  ]
+}

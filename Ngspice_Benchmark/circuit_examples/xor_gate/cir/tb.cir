@@ -1,0 +1,78 @@
+* 2-Input XOR Gate (Transmission Gate - FIXED)
+.lib ../../device_models/sky130_fd_pr/combined_models/sky130.lib.spice tt
+.global VDD GND
+.temp 27
+
+* Design variables injected by my_testbench_template/src/ngspice.py
+.include 'design_var.inc'
+
+*********** Unit Under Test ********************
+.include "xor_gate.cir"
+*********** Test-bench *************************
+XXOR A B Y VDD GND XOR_GATE
+* Input signals
+VA A GND PWL(0 0 1n 1.8 30n 1.8)
+VB B GND PWL(0 0 6n 0 7n 1.8 16n 1.8 17n 0 26n 0)
+
+* Supply
+VDD VDD GND DC 1.8
+
+.control
+set noaskquit
+
+op
+let i_static = abs(i(VDD))
+
+echo "I_STATIC:" > xor_results.txt
+print i_static >> xor_results.txt
+
+tran 10p 30n
+
+let i_vdd = -i(VDD)
+
+meas tran v_b_50_rise WHEN v(B)=0.9 CROSS=1
+meas tran v_y_50_fall WHEN v(Y)=0.9 CROSS=1
+let tphl_val = abs(v_y_50_fall - v_b_50_rise) * 1e12
+
+echo "TPHL_PS:" >> xor_results.txt
+print tphl_val >> xor_results.txt
+
+meas tran v_b_50_fall WHEN v(B)=0.9 CROSS=2
+meas tran v_y_50_rise WHEN v(Y)=0.9 CROSS=2
+let tplh_val = abs(v_y_50_rise - v_b_50_fall) * 1e12
+
+echo "TPLH_PS:" >> xor_results.txt
+print tplh_val >> xor_results.txt
+
+let avg_delay_val = (tphl_val + tplh_val) / 2
+
+echo "AVG_DELAY_PS:" >> xor_results.txt
+print avg_delay_val >> xor_results.txt
+
+let i_avg = mean(abs(i_vdd))
+
+echo "I_DYNAMIC:" >> xor_results.txt
+print i_avg >> xor_results.txt
+
+let voh_val = vecmax(v(Y))
+let vol_val = vecmin(v(Y))
+
+echo "VOH:" >> xor_results.txt
+print voh_val >> xor_results.txt
+
+echo "VOL:" >> xor_results.txt
+print vol_val >> xor_results.txt
+
+* my_testbench_template parse-friendly post-processed measures
+let avg_delay_ps = avg_delay_val
+let power_total_uw = (abs(op1.vdd#branch) + i_avg) * 1.8 * 1e6
+let energy_per_transition_fj = i_avg * 1.8 / 100e6 * 1e15
+let noise_margin_high = voh_val - 1.26
+let noise_margin_low = 0.54 - vol_val
+let fom = ((noise_margin_high + noise_margin_low) / 2 / 0.5) / (energy_per_transition_fj / 100 * avg_delay_ps / 10000)
+print avg_delay_ps power_total_uw energy_per_transition_fj noise_margin_high noise_margin_low fom
+
+quit
+.endc
+
+.end

@@ -1,0 +1,4 @@
+.subckt SKY130_INV OUT IN VSS VDD
+x1 OUT IN VDD VDD sky130_fd_pr__pfet_01v8 w={W_pmos} l=0.15
+x2 OUT IN VSS VSS sky130_fd_pr__nfet_01v8 w={W_nmos} l=0.15
+.ends SKY130_INV

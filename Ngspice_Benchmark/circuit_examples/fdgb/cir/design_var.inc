@@ -1,0 +1,13 @@
+*  Design Var
+ .param
++L=1.5
++W_GM1=1.5
++W_CASC_N=1.5
++W_CASC_P=1.5
++W_CURR_P=1.5
++W_TAIL=1.5
++W_AUX_GM=1.5
++W_AUX_LOAD=1.5
++W_AUX_TAIL=1.5
++W_BIAS_P=1.0
++W_BIAS_N=1.5

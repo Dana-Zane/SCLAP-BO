@@ -1,0 +1,42 @@
+.subckt FDGB GNDA VDDA VINN VINP VOUTN VOUTP
+* BIAS GENERATION
+xm_bias_p0 VBIAS_P0 VBIAS_P0 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=4
+xm_bias_p1 VBIAS_P1 VBIAS_P0 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=4
+xm_bias_p1_load VBIAS_P1 VBIAS_P1 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=4
+xm_bias_n0 VBIAS_N0 VBIAS_N0 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=4
+xm_bias_n0_src VBIAS_N0 VBIAS_P0 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=4
+xm_bias_n1 VBIAS_N1 VBIAS_N1 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_BIAS_N} m=4
+xm_bias_n1_src VBIAS_N1 VBIAS_P0 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_BIAS_P} m=4
+I0 VBIAS_P0 GNDA 10e-6
+
+* MAIN AMPLIFIER - NMOS Input Differential Pair
+xm0 NET_DM_N VINN TAIL GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_GM1} m=4
+xm3 NET_DM_P VINP TAIL GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_GM1} m=4
+xm4 TAIL VBIAS_N0 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_TAIL} m=4
+
+* NMOS CASCODE (gain boosted by aux amp 2)
+xm7 VOUTP NET_AUX2_P NET_DM_N GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_CASC_N} m=4
+xm8 VOUTN NET_AUX2_N NET_DM_P GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_CASC_N} m=4
+
+* PMOS CASCODE (gain boosted by aux amp 1)
+xm5 VOUTP NET_AUX1_P NET_CS_P VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_CASC_P} m=4
+xm6 VOUTN NET_AUX1_N NET_CS_N VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_CASC_P} m=4
+
+* PMOS CURRENT SOURCES
+xm1 NET_CS_N VBIAS_P0 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_CURR_P} m=4
+xm2 NET_CS_P VBIAS_P0 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_CURR_P} m=4
+
+* AUXILIARY AMP 1 (boosts PMOS cascode) - separate tail node
+xm12 NET_AUX1_N NET_CS_N TAIL_AUX1 GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_AUX_GM} m=2
+xm13 NET_AUX1_P NET_CS_P TAIL_AUX1 GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_AUX_GM} m=2
+xm11 TAIL_AUX1 VBIAS_N1 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_AUX_TAIL} m=2
+xm9 NET_AUX1_N VBIAS_P1 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_AUX_LOAD} m=2
+xm10 NET_AUX1_P VBIAS_P1 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_AUX_LOAD} m=2
+
+* AUXILIARY AMP 2 (boosts NMOS cascode) - separate tail node
+xm17 NET_AUX2_P NET_DM_N TAIL_AUX2 GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_AUX_GM} m=2
+xm18 NET_AUX2_N NET_DM_P TAIL_AUX2 GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_AUX_GM} m=2
+xm16 TAIL_AUX2 VBIAS_N1 GNDA GNDA sky130_fd_pr__nfet_01v8 l={L} w={W_AUX_TAIL} m=2
+xm14 NET_AUX2_P VBIAS_P1 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_AUX_LOAD} m=2
+xm15 NET_AUX2_N VBIAS_P1 VDDA VDDA sky130_fd_pr__pfet_01v8 l={L} w={W_AUX_LOAD} m=2
+.ends FDGB
