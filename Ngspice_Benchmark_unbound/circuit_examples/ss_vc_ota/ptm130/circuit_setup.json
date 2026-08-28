@@ -1,0 +1,73 @@
+{
+    "ranges": [
+        {
+            "params": [
+                "_w0",
+                "_w1",
+                "_w2",
+                "_w3",
+                "_w4",
+                "_w5",
+                "_w6",
+                "_w7",
+                "_w8",
+                "_w9",
+                "_w10",
+                "_w11"
+            ],
+            "min": 1e-06,
+            "max": 0.0001,
+            "grid": 1e-07
+        },
+        {
+            "params": [
+                "_l0",
+                "_l1",
+                "_l2",
+                "_l3",
+                "_l4",
+                "_l5",
+                "_l6",
+                "_l7",
+                "_l8",
+                "_l9",
+                "_l10",
+                "_l11"
+            ],
+            "min": 3.4e-07,
+            "max": 5e-05,
+            "grid": 1e-08
+        },
+        {
+            "params": [
+                "_nf8",
+                "_nf6",
+                "_nf4",
+                "_nf10",
+                "_nf1",
+                "_nf0"
+            ],
+            "min": 1,
+            "max": 8,
+            "grid": 2
+        }
+    ],
+    "testbenches": [
+        "open-loop-testbench.cir"
+    ],
+    "objectives": [
+        "min IDD",
+        "max GBW",
+        "max GDC"
+    ],
+    "constraints": [
+        "GDC > 50",
+        "IDD < 35e-5",
+        "PM < 90",
+        "PM > 45",
+        "GBW > 15e6",
+        "FOM > 500",
+        "VOV_MPM0 VOV_MPM1 VOV_MPM2 VOV_MPM3 VOV_MNM4 VOV_MNM5 VOV_MNM6 VOV_MNM7 VOV_MNM8 VOV_MNM9 VOV_MNM10 VOV_MNM11 > 0.05",
+        "DELTA_MPM0 DELTA_MPM1 DELTA_MPM2 DELTA_MPM3 DELTA_MNM4 DELTA_MNM5 DELTA_MNM6 DELTA_MNM7 DELTA_MNM8 DELTA_MNM9 DELTA_MNM10 DELTA_MNM11 > 0.1"
+    ]
+}
